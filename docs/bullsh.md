@@ -1,12 +1,9 @@
-# BullSH
+# [BullSH](https://github.com/JustAundre/ass-suite/tree/main/bullsh)
 
 > [!CAUTION]
-> Security through obscurity is **not** as secure as it is fun to use.
+> BullSH is an **experimental** intermediary between SSHD and the system; there may be holes or issues otherwise.
 
-> [!WARNING]
-> The "Bullshit Shell" is an **Experimental** intermediary between SSHD and the system.
-
-BullSH is a honeypot shell more commonly known as a "*Honeyshell*". BullSH is meant to confuse the person(s) behind the SSH sessions it intercepts.
+BullSH is a honeypot shell also commonly referred to as a "*honeyshell*". BullSH is meant to confuse the person(s) behind the SSH sessions it intercepts.
 
 ## Dependencies
 
@@ -23,12 +20,12 @@ BullSH is a honeypot shell more commonly known as a "*Honeyshell*". BullSH is me
 - Attempting to (re)assign **any** variable will yield a fake `readonly` error.
 - Shell operators and unaccounted for builtins are not functional. <small>(See here for examples of ["shell operators"](https://www.tutorialspoint.com/unix/unix-basic-operators.htm))</small>
 - Attempting to use `sudo` will initially attempt to authenticate using the real `sudo`, but will print a fake "*user is not in sudoers*" error anyway on success.
-	- Can be linked with **Shellcam**. (Recommended)
+	- Can be linked with **[Shellcam](/docs?q=shellcam)**. (Recommended)
 - Prevents and logs non-interactive sessions
 - Logs to a file, and JournalCTL/SystemD.
 	- <small>File log is by default, configured to `/var/tmp/shell.log`. The tag (`-t`) for SystemD logs is `bullsh`.</small>
 - Logs contain UID, EUID, input entered into BullSH (except successful authentications), failed attempts and layer count (all where applicable).
-- Can be configured to fake root access, 
+- Can be configured to fake root access.
 
 ### Issues & Mitigations
 
@@ -62,4 +59,4 @@ Go into `.bullshrc` & change the corresponding line in the `hashes` variable to 
 
 ## Roadmap/Notes
 
-- There is room to add some fake success logic to redirect the attacker to a whole 'nother system entirely.
+- Add logic to redirect attackers to another system.
