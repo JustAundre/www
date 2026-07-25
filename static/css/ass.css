@@ -79,8 +79,8 @@ main {
 
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
-	min-width: 350px;
 	width: 32ch;
+	min-width: 350px;
 	height: 100%;
 	overflow: auto;
 
@@ -134,11 +134,11 @@ main {
 
 	&::before,
 	&::after {
+		position: sticky;
+		isolation: isolate;
 		width: 100%;
 		height: var(--fade-width);
 		content: '';
-		position: sticky;
-		isolation: isolate;
 	}
 
 	&::before {
@@ -157,8 +157,8 @@ main {
 	@media (orientation: portrait),
 	(max-height: 512px),
 	(max-width: 512px) {
-		padding-left: unset;
 		padding-right: unset;
+		padding-left: unset;
 		width: 80dvw;
 	}
 }

@@ -236,19 +236,19 @@ html {
 	width: fit-content;
 
 	button {
+		display: flex;
+		justify-content: safe center;
+		align-items: center;
 		border: none;
 		border-top: color-mix(in srgb, var(--text-1) 30%, var(--bg-1) 70%) solid 1px;
 		border-radius: 0;
 		border-inline-width: 0;
 		background: linear-gradient(color-mix(in srgb, var(--bg-2) 90%, var(--text-3) 10%) 0%, var(--bg-3) 100%);
 		isolation: isolate;
-		display: flex;
-		justify-content: safe center;
-		align-items: center;
-		text-align: center;
 		aspect-ratio: 1/1;
 		height: 2em;
 		color: var(--text-1);
+		text-align: center;
 
 		&:not([disabled]):hover i,
 		&:not([disabled]):focus-visible i {
@@ -262,8 +262,8 @@ html {
 		}
 
 		&[disabled] i {
-			opacity: .5;
 			scale: .8;
+			opacity: .5;
 		}
 
 		[data-motion="true"] & i {

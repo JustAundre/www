@@ -8,8 +8,8 @@
 *,
 *::before,
 *::after {
-	line-height: calc(1em + .5rem);
 	box-sizing: border-box;
+	line-height: calc(1em + .5rem);
 }
 
 *:not(dialog) {

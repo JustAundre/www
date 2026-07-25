@@ -46,8 +46,8 @@ html {
 }
 
 body {
-	padding: 1em;
 	margin: auto;
+	padding: 1em;
 	max-width: 650px;
 	color: var(--text-1);
 	font-family: var(--font-stack-docs), var(--font-stack-base);
@@ -76,8 +76,8 @@ h3 {
 h1,
 h2,
 h3 {
-	text-align: center;
 	margin-bottom: .5em;
+	text-align: center;
 }
 
 h2:after {
@@ -210,21 +210,21 @@ table tbody+tbody {
 /* Icons */
 .octicon {
 	display: inline-block;
-	fill: currentColor;
 	vertical-align: text-bottom;
-	overflow: visible;
+	fill: currentColor;
 	margin-right: var(--base-size-8);
+	overflow: visible;
 }
 
 /* Inline Code Elements */
 code,
 tt {
+	margin: 0;
+	border-radius: 6px;
+	padding: .2em .4em;
 	font-size: 90%;
 	font-family: var(--font-stack-mono);
-	padding: .2em .4em;
-	margin: 0;
 	white-space: break-spaces;
-	border-radius: 6px;
 }
 
 code br,
@@ -233,42 +233,42 @@ tt br {
 }
 
 pre {
-	padding: var(--base-size-16);
-	font-family: var(--font-stack-mono);
-	width: 100%;
 	border-radius: 1em;
+	padding: var(--base-size-16);
+	width: 100%;
+	font-family: var(--font-stack-mono);
 
 	code {
-		padding: unset;
 		background-color: unset;
+		padding: unset;
 	}
 }
 
 pre,
 code {
+	border: var(--bg-3) solid 1px;
 	background-color: var(--bg-2);
 	white-space: pre-wrap;
-	overflow-wrap: break-word;
 	word-break: normal;
+	overflow-wrap: break-word;
 	tab-size: 4;
-	border: var(--bg-3) solid 1px;
 }
 
 pre code,
 pre tt {
 	display: inline;
-	padding: 0;
 	margin: 0;
-	line-height: inherit;
-	background-color: transparent;
 	border: 0;
+	background-color: transparent;
+	padding: 0;
+	line-height: inherit;
 }
 
 .markdown-alert {
-	padding: var(--base-size-8) var(--base-size-16);
 	margin-bottom: var(--base-size-16);
-	color: inherit;
 	border-left: .25em solid var(--border-default);
+	padding: var(--base-size-8) var(--base-size-16);
+	color: inherit;
 }
 
 .markdown-alert> :first-child {
@@ -281,8 +281,8 @@ pre tt {
 
 .markdown-alert .markdown-alert-title {
 	display: flex;
-	font-weight: var(--base-text-weight-medium, 500);
 	align-items: center;
+	font-weight: var(--base-text-weight-medium, 500);
 }
 
 .markdown-alert.markdown-alert-note {
