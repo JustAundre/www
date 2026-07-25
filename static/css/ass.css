@@ -34,7 +34,8 @@ body {
 	height: 100svh;
 
 	@media (orientation: portrait),
-	(max-height: 512px) {
+	(max-height: 512px),
+	(max-width: 512px) {
 		grid-template-rows: var(--header-height) calc(512px - var(--header-height) - var(--footer-height)) var(--footer-height);
 	}
 }

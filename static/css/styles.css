@@ -233,9 +233,9 @@ html {
 	flex-direction: row;
 	box-shadow: 0 0 1em var(--bg-3);
 	border-radius: 9e9px;
+	width: fit-content;
 
-	button,
-	a>button {
+	button {
 		border: none;
 		border-top: color-mix(in srgb, var(--text-1) 30%, var(--bg-1) 70%) solid 1px;
 		border-radius: 0;
