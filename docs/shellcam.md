@@ -8,6 +8,7 @@ Must have/use the below:
 ## Installation
 
 Change directory into this directory & run the installation script
+
 ```bash
 cd shellcam
 ./install.sh

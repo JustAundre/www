@@ -20,7 +20,7 @@
 	--attention: #f0ff4e;
 	--danger: #f85149;
 	--done: #ab7df8;
-	--border-default: #3d444d;
+	--border-default: #b4bcc5;
 
 	/* Layout & Typography Sizes */
 	--base-size-4: 0.25rem;
@@ -33,12 +33,12 @@
 
 [data-theme="light"]:root {
 	--neutral: #091016;
-	--info: #004194;
+	--info: #1d569f;
 	--success: #0b3d10;
 	--attention: #966700;
 	--danger: #7e0a04;
 	--done: #5612cb;
-	--border-default: #b4bcc5;
+	--border-default: #3d444d;
 }
 
 html {
@@ -106,10 +106,6 @@ ol {
 	padding-left: 1.2em;
 }
 
-ul {
-	list-style: square;
-}
-
 blockquote,
 details,
 dl,
@@ -124,12 +120,12 @@ ul {
 
 blockquote {
 	border-left: 1px solid gray;
-	padding: 0.5rem calc(10rem/9) 0 1rem;
+	padding: .5rem calc(10rem/9) 0 1rem;
 }
 
 blockquote,
 blockquote p {
-	color: hsl(220, 6%, 60%);
+	color: var(--border-default);
 }
 
 /* Links */
@@ -139,12 +135,6 @@ a {
 
 a img {
 	border: none;
-}
-
-h1 a,
-h1 a:hover {
-	color: #ddd;
-	text-decoration: none;
 }
 
 hr {

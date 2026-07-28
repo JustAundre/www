@@ -1,9 +1,14 @@
 # Password Generator
 
-A very customizable & automatible password generator
+A very customizable & automatible password generator!
 
-Missing CLI arguments will be prompted for interactively if possible
-Pre-determined defaults will substitute invalid arguments
+> [!TIP]
+>
+> Missing CLI arguments will be prompted for interactively if possible; pre-determined defaults will substitute invalid arguments
+
+> [!NOTE]
+>
+> The script may be used in tandem with other scripts with less friction as the "Generated password(s):" text is printed to stderr.
 
 ## Opts
 
@@ -46,7 +51,3 @@ Generated password(s):
 Rip1-|-1Dozen
 Fotos6-|-0Clara
 ```
-
-## Miscellaneous Notes
-
-The script may be used in tandem with other scripts with less friction as the "Generated password(s):" text is printed to stderr.
