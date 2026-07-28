@@ -74,7 +74,7 @@ The above shebang is really common, though more likely you'll want to use this:
 
 ```bash
 #!/usr/bin/env bash
-echo "This shebang does almost the same thing, except Bash can be anywhere else that isn't /usr/bin/bash"
+echo 'This shebang does almost the same thing, except Bash can be anywhere in the ${PATH} that isn't /usr/bin/bash'
 ```
 
 It's more flexible.
@@ -208,8 +208,6 @@ done
 ```
 
 ### Case Statements
-
-
 
 ### Formatting
 
