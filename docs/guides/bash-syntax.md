@@ -1,8 +1,8 @@
-# A Shell Syntax Guide
+# A Bash Syntax Guide
 
 > [!IMPORTANT]
 >
-> This guide depends on your understanding of general concepts in UNIX systems. Though, hyperlinks/footnotes are present where likely needed. 
+> This guide depends on your understanding of general concepts in UNIX systems. Though, hyperlinks/footnotes are present where likely needed.
 >
 > This covers the syntax for shell script, but much of a script's meaning comes from the commands. You'll need to learn the right commands for the job elsewhere.
 
@@ -26,21 +26,17 @@ sudo pacman -S tldr
 It generally follows the same formatting as the `man` command:
 
 ```bash
-#!/usr/bin/env bash
-
 # See usage examples of basic calculator:
 tldr bc
 ```
 
-## Command Formatting
+## Structuring A Command
 
-In a command, you’ll have the command (*duh*) and then the arguments you pass to it.
+For a command, you’ll have the command (*duh*) and then the arguments you pass to it.
 
 Of course, there’s regular text arguments (see figure 1 below) but there’s also short-form opts and long-form opts (figures 2/3 respectively).
 
-```bash 
-#!/usr/bin/env bash
-
+```bash
 # Figure 1
 # "Hello!" is a normal argument.
 echo "Hello!"
@@ -51,10 +47,15 @@ echo -n "Hello!"
 
 # Figure 3
 echo --BashEchoHasNoLongformOpt "Hi!"
-
 ```
 
 You also don’t ***have*** to quote regular arguments, but you should get used to it because they’re there for handling variables safely to prevent [command injection](https://owasp.org/www-community/attacks/Command_Injection).
+
+Also, check this out--you can combine shortform opts:
+
+```bash
+read -rp "A clean combination of -r and -p for the read command!"
+```
 
 > [!NOTE]
 >
@@ -62,9 +63,9 @@ You also don’t ***have*** to quote regular arguments, but you should get used 
 
 ## The Shebang
 
-You can append the `.sh` or `.bash` extension to the end of your script, but that doesn't actually tell the system to run it using the correct interpreter.
+You can append the `.sh` or `.bash` extension to the end of your script, but that's for *you* to use to identify, not for the system to use the correct interpreter.
 
-That job goes to the *shebang* , a line which is unconditionally placed at the very 1st line, which dictates what interpreter is to be used.
+That honor goes to the *shebang* , a line which is unconditionally placed at the very 1st line, which dictates what interpreter is to be used.
 
 ```bash
 #!/usr/bin/bash
@@ -80,9 +81,62 @@ echo "This shebang does almost the same thing, except Bash can be anywhere else 
 
 It's more flexible.
 
+## Variables
+
+### Standard Strings
+
+Simple and straight-forward, it's just `variable=value`:
+
+```bash
+test_var="abc"
+echo "${test_var}" # Result: "abc"
+```
+
+There's also fun stuff you can do with string concacenation that you can also do in a few other places where strings are involved--including [command arguments](#Structuring-A-Command):
+
+```bash
+foo='Hello! '
+bar="$foo"'This string is single quoted and will not be interpreted even if I include a ${variable}!'
+echo "${bar}" # Result: "Hello! This string is single quoted and will not be interpreted even if I include a ${variable}!"
+```
+
+### Standard Arrays
+
+You define an array almost like a standard string but with a opening `[` and closing `]` square bracket with the values in the array sandwhiched between.
+
+```bash
+example_array=[
+	'test'
+	'abc'
+	'123'
+	'xyz'
+]
+```
+
+Also, arrays don't care about formatting (that much, anyway).
+You can also do the below:
+
+```bash
+example_array=[test abc 123 xyz]
+```
+
+Oh yeah, this is also a good time to mention:
+- `${example_array}`	resolves to only the first item in the array
+- `${example_array[@]}`	resolves to all items in the array, as an array
+- `${example_array[*]}`	resolves to all the items in the array, as a concacenated string
+- `${example_array[0]}`	resolves to the first item in the array (yes, arrays in Bash are 0-indexed)
+- `${example_array[((1 + 3))]}` resolves to `${example_array[4]}`; so yes, you can do math inside those square brackets `[]` that define the index of the array to target.
+
+You don't HAVE to quote your strings, but please do because it keeps it looking consistent and reduces risk of a string being interpreted.
+This goes double if your strings have special or even whitespace characters.
+
+### Associative Arrays
+
+### Nameref Variable
+
 ## Statements
 
-### If
+### If Statements
 
 Comprised of the initiator `if`, the result `then`, and additional conditions `elif`, an exception `else` and the closing `fi`.
 
@@ -104,50 +158,68 @@ fi
 >
 > No, `else if` is NOT the same as `elif` .
 >
-> `elif` extends an already existing `if` statement, 
+> `elif` extends an already existing `if` statement,
 > `else if` creates a new `if` statement, requiring you to add an extra `fi` closure.
 
-### While/Until
+### While/Until Statements
 
 While/until loops generally share the same structure, and are opposites—”while loops” will loop over the commands nested inside them so long as the command provided to them exits successfully without issue, and “until loops” will do the same but so long as the given command fails.
 
-```bash 
+```bash
 while true; do
 	echo "This loop will spam this message until you kill it."
 done
 
+until false; do
+	echo "This loop will spam this message until you kill it."
+done
+
 while false; do
-	echo "The false command always fails so the while loop will never send this message."
+	echo "The false command always fails so this message will never be printed."
 done
 
 until true; do
-	echo "The true command never fails so this message will never be printed"
-done
-
-until false; do
-	echo "This'll spam until you kill the loop."
+	echo "The true command never fails so this message will never be printed."
 done
 ```
 
+### For Statements
 
+`For` loops are useful **for** looping over a list/[array](#Standard-Arrays) of items—
 
-### For
+<small>(Or, for those who already know a primary scripting language, useful for [C-style loops](https://example.com)).</small>
 
+See below for examples of both:
 
+Normal for loop:
 
-### Case
+```bash
+for item in "${example_array[@]}"; do
+	echo "Recieved item: ${item}"
+done
+
+# C-style loop | Defines variable i as 0, and if i is less than the amount of items in the array, add 1 to i.
+for ((i=0; i<"${example_array[@]}"; i++)); do
+	echo "Item number ${i}: ${example_array["${i}"]}"
+done
+
+# Don't do this:
+for item in "${example_array[*]}"; do
+	# Depending on a few things, this treats the entire array as 1 string, and sometimes past that will re-split the array using the IFS variable
+done
+```
+
+### Case Statements
 
 
 
 ### Formatting
 
-So, ( *opinion warning* ), statements can be formatted more ways than they should be allowed to unlike Python.
+So, (*opinion incoming*), statements can be formatted more ways than they should be allowed to unlike Python.
 
 Again, unlike Python, statements can mix and match delimiters—it’s better to see for yourself:
 
-```bash 
-#!/usr/bin/env bash
-
+```bash
 # The below is a crime against humanity, thou who scripts like this shall be ensnared in the fires of hell.
 if # Newline delimiter
 command-a # No, indentation won't affect interpretation.
@@ -169,14 +241,13 @@ The opening and closing curly brackets `{}` are used to group multiple commands 
 > Command groups require a space after the opening curly bracket `{` and a semi-colon `;` (or a newline/another forms of acceptable delimiters by Bash) after the closing curly bracket `}` like so:
 >
 > ```bash
-> #!/usr/bin/env bash
 > {
 > 	# Print "Hello!"
 > 	# The ">&2" redirects the "Hello!" to fd2/stderr, which will make it hidden due to the directive attached to the command group.
 > 	echo "Hello!" >&2
 >
 > 	# Gives the user a prompt and assigns it to a variable.
-> 	# Note: the read command actually prints its provided prompt to fd2/stderr so 2>&1 is present to revert that 
+> 	# Note: the read command actually prints its provided prompt to fd2/stderr so 2>&1 is present to revert that
 > 	read -r -p 'How are you?: ' answer_variable 2>&1
 >
 > 	# This is a dummy, non-existent command and will print an error.
@@ -190,8 +261,8 @@ Ditto, but `()` opposed to `{}`.
 
 Alike command groups, but with the distinction that everything inside it runs under a new process. A "sub-shell" is ephemeral and will disappear when it finishes. As a result, the following effects can be observed, but note that this is not an exhaustive list:
 
- * Changes in variables (*including creation and deletion* ) will not trickle up to the parent shell.
- * Changes in variables (*including creation and deletion*) in the parent will not trickle down to the sub-shell *post-creation* of the sub-shell.
+- Changes in variables (*including creation and deletion* ) will not trickle up to the parent shell.
+- Changes in variables (*including creation and deletion*) in the parent will not trickle down to the sub-shell *post-creation* of the sub-shell.
 
 Here's an example:
 
@@ -207,7 +278,7 @@ foo=bar
 (
 	# Re-assigned variable "foo" to "hello" inside of sub-shell.
 	foo="hello"
-	
+
 	# Scope: Sub-shell
 	# Prints "hello"
 	echo "${foo}"
@@ -215,7 +286,7 @@ foo=bar
 
 # Scope: Top
 # Prints "bar".
-echo "${foo}" 
+echo "${foo}"
 ```
 
 ### Unnamed Pipes
@@ -277,12 +348,12 @@ Ditto, but append " `disown` " after the ampersand `&` to background and *disown
 { sleep 10; echo 'hi'; } & disown
 ```
 
-Disowning a process means the parent process (in this scenario, your terminal) can close and the child process won't close along with the parent. 
+Disowning a process means the parent process (in this scenario, your terminal) can close and the child process won't close along with the parent.
 
 ### Input Redirection
 
 The opening angle bracket `<` feeds data into the command to the left from the file path on the right as seen below:
-```bash 
+```bash
 while read -r line; do
 	echo "Line recieved: ${line}"
 done <'data.txt'
