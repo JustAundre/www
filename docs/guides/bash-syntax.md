@@ -11,8 +11,6 @@
 The `man` command (short for "manual") is great for a comprehensive breakdown of some command, but demonstrations and examples are better for getting started with a complex command—you'll want the `tldr` command, which you can install using your preferred package manager:
 
 ```bash
-#!/usr/bin/env bash
-
 # For Debian and its derivatives:
 sudo apt install tldr
 
