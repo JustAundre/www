@@ -2,8 +2,7 @@
 
 ## Dependencies
 
-Must have/use the below:
-- SSHD
+- `SSHD 4.4<=`
 
 ## Installation
 
