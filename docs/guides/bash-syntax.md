@@ -77,7 +77,7 @@ The above shebang is really common, though more likely you'll want to use this:
 echo 'This shebang does almost the same thing, except Bash can be anywhere in the ${PATH} that isn't /usr/bin/bash'
 ```
 
-It's more flexible.dd
+It's more flexible.
 
 ## Variables
 
