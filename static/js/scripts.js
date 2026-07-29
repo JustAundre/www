@@ -95,4 +95,5 @@ document.addEventListener('DOMContentLoaded', () => {
 		root.setAttribute('data-dyslexic', 'false');
 		openConfig();
 	}
+	document.querySelector('[aria-label="Open Settings"]').addEventListener('click', openConfig);
 });

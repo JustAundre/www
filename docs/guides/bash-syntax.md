@@ -77,7 +77,7 @@ The above shebang is really common, though more likely you'll want to use this:
 echo 'This shebang does almost the same thing, except Bash can be anywhere in the ${PATH} that isn't /usr/bin/bash'
 ```
 
-It's more flexible.
+It's more flexible.dd
 
 ## Variables
 
@@ -90,7 +90,7 @@ test_var="abc"
 echo "${test_var}" # Result: "abc"
 ```
 
-There's also fun stuff you can do with string concacenation that you can also do in a few other places where strings are involved--including [command arguments](#Structuring-A-Command):
+There's also fun stuff you can do with string concacenation that you can also do in a few other places where strings are involved--including [command arguments](#structuring-a-command):
 
 ```bash
 foo='Hello! '
@@ -100,25 +100,26 @@ echo "${bar}" # Result: "Hello! This string is single quoted and will not be int
 
 ### Standard Arrays
 
-You define an array almost like a standard string but with a opening `[` and closing `]` square bracket with the values in the array sandwhiched between.
+You define an array almost like a standard string but with the opening `(` and closing `)` parenthesis with the values of the array sandwhiched between, *preferably* quoted as the values need to be separated with some kind of whitespace.
 
 ```bash
-example_array=[
+example_array=(
 	'test'
 	'abc'
 	'123'
 	'xyz'
-]
+)
 ```
 
 Also, arrays don't care about formatting (that much, anyway).
 You can also do the below:
 
 ```bash
-example_array=[test abc 123 xyz]
+example_array=(test abc 123 xyz)
 ```
 
 Oh yeah, this is also a good time to mention:
+
 - `${example_array}`	resolves to only the first item in the array
 - `${example_array[@]}`	resolves to all items in the array, as an array
 - `${example_array[*]}`	resolves to all the items in the array, as a concacenated string
@@ -183,7 +184,7 @@ done
 
 ### For Statements
 
-`For` loops are useful **for** looping over a list/[array](#Standard-Arrays) of items—
+`For` loops are useful **for** looping over a list/[array](#standard-arrays) of items—
 
 <small>(Or, for those who already know a primary scripting language, useful for [C-style loops](https://example.com)).</small>
 
@@ -370,4 +371,4 @@ echo "abc" | command-b # Nope, bad!
 command-b <<<"abc" # That's better.
 ```
 
-Feeds a string into a command's stdin without redirecting the stdout of another command, avoids the ambiguity of variations in how `echo` operates across systems, and mitigates the (albeit very minor) performance hit from spawning sub-shells as a result of using [unnamed pipes](#Unnamed-Pipes).
+Feeds a string into a command's stdin without redirecting the stdout of another command, avoids the ambiguity of variations in how `echo` operates across systems, and mitigates the (albeit very minor) performance hit from spawning sub-shells as a result of using [unnamed pipes](#unnamed-pipes).

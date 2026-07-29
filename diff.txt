@@ -1,0 +1,190 @@
+diff --git a/docs/bash-lib/README.md b/docs/bash-lib/README.md
+index e69de29..0bcab7a 100644
+--- a/docs/bash-lib/README.md
++++ b/docs/bash-lib/README.md
+@@ -0,0 +1,30 @@
++# Bash Lib
++
++Custom functions made to make complex scripts cleaner, helping move just that much more focus from keeping scripts clean and maintainable, to scripting the concept.
++
++## Installation
++
++1. `cd` in your project's root directory.
++
++2. Run `git submodule add https://github.com/justaundre/bash-lib.git lib` to add this repository as a dependency.
++
++3. Run `git submodule update --init --recursive` to pull it down
++
++Congrats, it's installed @ the `/lib` directory of your project now.
++
++## Usage
++
++To make these commands available to your scripts, it's important to note that these commands are in reality, functions (see [below](#Why-Functions) for why I made this decision).
++
++Use the below to source all the functions.
++
++```bash
++[[ -d "$(pwd)/../lib/" ]] || exit 69
++for function in "$(pwd)/../lib/"*".sh"; do
++	source "${function}"
++done
++```
++
++## Why Functions?
++
++When executing a script, even a script inside a script (*which is effectively what this is*), a PID needs to be allocated and a process needs to be spun up. *Generally*, this doesn't impact performance noticibly when a human is typing commands manually, **but** it'll matter once you start to put stuff in quick loops.
+\ No newline at end of file
+diff --git a/docs/guides/bash-syntax.md b/docs/guides/bash-syntax.md
+index 4c21bca..9fc5455 100644
+--- a/docs/guides/bash-syntax.md
++++ b/docs/guides/bash-syntax.md
+@@ -77,7 +77,7 @@ The above shebang is really common, though more likely you'll want to use this:
+ echo 'This shebang does almost the same thing, except Bash can be anywhere in the ${PATH} that isn't /usr/bin/bash'
+ ```
+ 
+-It's more flexible.
++It's more flexible.dd
+ 
+ ## Variables
+ 
+@@ -90,7 +90,7 @@ test_var="abc"
+ echo "${test_var}" # Result: "abc"
+ ```
+ 
+-There's also fun stuff you can do with string concacenation that you can also do in a few other places where strings are involved--including [command arguments](#Structuring-A-Command):
++There's also fun stuff you can do with string concacenation that you can also do in a few other places where strings are involved--including [command arguments](#structuring-a-command):
+ 
+ ```bash
+ foo='Hello! '
+@@ -100,25 +100,26 @@ echo "${bar}" # Result: "Hello! This string is single quoted and will not be int
+ 
+ ### Standard Arrays
+ 
+-You define an array almost like a standard string but with a opening `[` and closing `]` square bracket with the values in the array sandwhiched between.
++You define an array almost like a standard string but with the opening `(` and closing `)` parenthesis with the values of the array sandwhiched between, *preferably* quoted as the values need to be separated with some kind of whitespace.
+ 
+ ```bash
+-example_array=[
++example_array=(
+ 	'test'
+ 	'abc'
+ 	'123'
+ 	'xyz'
+-]
++)
+ ```
+ 
+ Also, arrays don't care about formatting (that much, anyway).
+ You can also do the below:
+ 
+ ```bash
+-example_array=[test abc 123 xyz]
++example_array=(test abc 123 xyz)
+ ```
+ 
+ Oh yeah, this is also a good time to mention:
++
+ - `${example_array}`	resolves to only the first item in the array
+ - `${example_array[@]}`	resolves to all items in the array, as an array
+ - `${example_array[*]}`	resolves to all the items in the array, as a concacenated string
+@@ -183,7 +184,7 @@ done
+ 
+ ### For Statements
+ 
+-`For` loops are useful **for** looping over a list/[array](#Standard-Arrays) of items—
++`For` loops are useful **for** looping over a list/[array](#standard-arrays) of items—
+ 
+ <small>(Or, for those who already know a primary scripting language, useful for [C-style loops](https://example.com)).</small>
+ 
+@@ -370,4 +371,4 @@ echo "abc" | command-b # Nope, bad!
+ command-b <<<"abc" # That's better.
+ ```
+ 
+-Feeds a string into a command's stdin without redirecting the stdout of another command, avoids the ambiguity of variations in how `echo` operates across systems, and mitigates the (albeit very minor) performance hit from spawning sub-shells as a result of using [unnamed pipes](#Unnamed-Pipes).
+\ No newline at end of file
++Feeds a string into a command's stdin without redirecting the stdout of another command, avoids the ambiguity of variations in how `echo` operates across systems, and mitigates the (albeit very minor) performance hit from spawning sub-shells as a result of using [unnamed pipes](#unnamed-pipes).
+\ No newline at end of file
+diff --git a/docs/index.html b/docs/index.html
+index 9ccd3f7..c6ae970 100644
+--- a/docs/index.html
++++ b/docs/index.html
+@@ -17,8 +17,8 @@
+ <body>
+ 	<header>
+ 		<nav class="button-row">
+-			<a href="/"><button aria-label="Return Home""><i class="icon-home"></i></button></a>
+-			<button aria-label="Open Settings" onclick="openConfig()"><i class="icon-settings"></i></button>
++			<a href="/"><button aria-label="Return Home"><i class="icon-home"></i></button></a>
++			<button aria-label="Open Settings"><i class="icon-settings"></i></button>
+ 		</nav>
+ 	</header>
+ 	<main id="blog-content"></main><br>
+diff --git a/index.html b/index.html
+index 5b72687..e60cd61 100644
+--- a/index.html
++++ b/index.html
+@@ -13,7 +13,7 @@
+ 
+ <header>
+ 	<nav class="button-row">
+-		<button aria-label="Open Settings" onclick="openConfig()"><i class="icon-settings"></i></button>
++		<button aria-label="Open Settings"><i class="icon-settings"></i></button>
+ 		<a href="#start"><button aria-label="Scroll to sidebar"><i class="icon-move-left"></i></button></a>
+ 		<a href="#end"><button aria-label="Scroll to project cards"><i class="icon-move-right"></i></button></a>
+ 	</nav>
+@@ -22,37 +22,37 @@
+ 	<div id="start"></div>
+ 	<aside id="sidebar">
+ 		<h1>Aundre's Shell Script Suite</h1>
+-		<span class="subtext">I'll have stuff other than Bash at some point, probably.</span>
++		<span class="subtext">Hey rando, you're probably doing better than ya give yourself credit for.</span>
+ 		<span id="item-desc"></span>
+ 	</aside>
+ 	<ul id="projects-grid">
+ 		<li class="project-card divergent-accent" style="--accent-hue: 50;">
+-			<h2><a href="/docs?q=bullsh">BullSH</a></h2>
++			<h2><a href="/docs?q=bullsh/README">BullSH</a></h2>
+ 			<span>Threats have since advanced from programs to people and programs, but people have room for trickery.</span><br>
+ 			<span class="subtext">Probably never going to be used on a real server.</span>
+ 		</li>
+ 		<li class="project-card divergent-accent" style="--accent-hue: 320;">
+-			<h2><a href="#">Custom Dependencies</a></h2>
++			<h2><a href="/docs?q=bash-lib/README">Custom Dependencies</a></h2>
+ 			<span>More bash scripts fashioned into commands to reduce redundancy across my projects.</span><br>
+ 			<span class="subtext">Consistent, clean, short.</span>
+ 		</li>
+ 		<li class="project-card divergent-accent" style="--accent-hue: 160;">
+-			<h2><a href="#">Hardening Scripts</a></h2>
++			<h2><a href="/docs?q=audit-n-fix/README">Hardening Scripts</a></h2>
+ 			<span>Scripts to audit every corner of your server, to bring it back from the depths of hell.</span><br>
+ 			<span class="subtext">Although, realistically, you would just do a clean install.</span>
+ 		</li>
+ 		<li id="my-card" class="project-card divergent-accent" style="--accent-hue: 80;">
+-			<h2><a href="/docs?q=about-me">About Me</a></h2>
++			<h2><a href="/docs?q=about-me/README">About Me</a></h2>
+ 			<span>Oh, you wanna know more about <em>me</em>? How exciting!</span><br>
+ 			<span class="subtext">If you couldn't already tell I love cybersecurity!</span>
+ 		</li>
+ 		<li class="project-card divergent-accent" style="--accent-hue: 200;">
+-			<h2><a href="#">Password Generator</a></h2>
++			<h2><a href="/docs?q=passwd-gen/README">Password Generator</a></h2>
+ 			<span>A local password generator which allows changing of the way its generated down to the character and for batch generation.</span><br>
+ 			<span class="subtext">Supports CLI args/opts!</span>
+ 		</li>
+ 		<li class="project-card divergent-accent" style="--accent-hue: 0;">
+-			<h2><a href="/docs?q=shell-syntax-guide">Shell Syntax Guide</a></h2>
++			<h2><a href="/docs?q=guides/bash-syntax">Shell Syntax Guide</a></h2>
+ 			<span>Everything you need to know about shell script syntax, for scripters by a scripter.</span><br>
+ 			<span class="subtext">"A scripter" referring to me, who writes almost nothing but shell script. 😭</span>
+ 		</li>
+diff --git a/static/js/scripts.js b/static/js/scripts.js
+index fe9216c..2a15784 100644
+--- a/static/js/scripts.js
++++ b/static/js/scripts.js
+@@ -95,4 +95,5 @@ document.addEventListener('DOMContentLoaded', () => {
+ 		root.setAttribute('data-dyslexic', 'false');
+ 		openConfig();
+ 	}
++	document.querySelector('[aria-label="Open Settings"]').addEventListener('click', openConfig);
+ });
+\ No newline at end of file
