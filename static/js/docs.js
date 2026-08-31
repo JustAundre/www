@@ -7,7 +7,7 @@ marked.use(window.markedAlert.default ? window.markedAlert.default() : window.ma
 
 (async function() {
 	try {
-		const query = new URLSearchParams(window.location.search).get('q');
+		const query = new URLSearchParams(window.location.search).get('q') || new URLSearchParams(window.location.search).get('query') || 'missing-query';
 		const url = `${window.location.origin}/docs/${query}.md`;
 		const response = await fetch(url);
 		const md = await response.text();
