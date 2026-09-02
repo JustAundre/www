@@ -35,8 +35,6 @@ Command opts:
 	- "abort": exit if a duplicate is detected.
 - `-p`: In the event a non-existent filepath is provided, this opt will create said file and all of its preceding non-existent parents if need be.
 
-### select_fix
-
 ### find
 
 Adds a practical opt to the `find` command for e**x**cluding some paths generally not needed in the scanning of the filesystem (**ephem**eral paths), the `-xephem` opt. See the full list of paths excluded below:
