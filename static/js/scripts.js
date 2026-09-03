@@ -41,6 +41,7 @@ configMenu.innerHTML = `
 		</div>
 	</label>
 	<button type="submit" id="enter-site" onclick="commitConfig()">Continue</button>
+	<div><img src="/static/media/heart.gif"/></div
 </form>
 `;
 
