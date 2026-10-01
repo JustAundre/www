@@ -324,7 +324,7 @@ while read -r line; do
 done <'/tmp/named_pipe' &
 
 # Send data
-echo 'Hello! This is a line of text.' >>'/tmp/named_pipe'
+echo 'Hello! This is a line of text.' >> '/tmp/named_pipe'
 ```
 
 ### Backgrounding A Process
