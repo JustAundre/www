@@ -4,9 +4,23 @@
 
 ### Failed Authentication
 
-- Target user(s): `cdc`, `redputer3`, `redputer$3`, `john.leguizamo`, `root`
-- Machines(s): all
-- Volume of attack(s): Minimal
+- Target user(s):
+	1. `cdc`
+	1. `redputer3`
+	1. `redputer$3`
+	1. `john.leguizamo`
+	1. `root`
+- Target Server(s):
+	[ ]: Server 1
+	[x]: Server 2
+	[ ]: Server 3
+	[ ]: Server 4
+	[ ]: Server 5
+- Volume of attack(s):
+	[x]: Minimal
+	[ ]: Moderate
+	[ ]: Concerning
+	[ ]: Very Concerning
 
 ```js
 Apr 25 13:58:18 db.example.com sshd[395]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=12.110.242.128  user=root
@@ -43,23 +57,16 @@ To reclaim the environment, the following engineering steps were executed:
 - Ownership Seizure: The attacker had practically *locked* the registry keys, the `Owner` attribute was manually reassigned to the `Administrators` group. The "`Replace owner on sub-containers and objects`" flag was utilized to force-propagate permissions down to the hidden malicious tasks, *allowing for their successful deletion*.
 
 - Kerberos Invalidation: the attacker had achieved `SYSTEM` access, the Domain's Kerberos keys were considered compromised—to invalidate any forged "Golden Tickets," the following was performed:
-
 	- `krbtgt` Password Rotation: The password for the `krbtgt` account was reset twice.
-
 	- Ticket Cache Purge: The command `klist purge -li 0x3e7` was executed to clear all existing tickets from the `SYSTEM` session memory.
 
 - Service Hardening Several services frequently used for pivoting were audited and disabled to prevent re-infection:    
-
 	- Disabled `WinHttpAutoProxySvc`.
-
 	- Template Services: Registry-level hardening was applied to `CDPUserSvc` and `OneSyncSvc` to prevent them from acting as triggers for the attacker's scripts.
 
 ## Current Security Posture
 
 - Persistence Status: All "Proxy" and "Error Reporting" tasks have been deleted from both the Registry and the physical `C:\Windows\System32\Tasks` directory.
-
 - Account Status: The scrat user has been removed.
-
 - Integrity Check: A `WMI` audit confirmed no "*headless*" Event Consumers remain in the root\subscription name-space.
-
 - Verification: Post-remediation logs show no further unauthorized Event 4672 (Special Privileges Assigned) logins.

@@ -251,8 +251,8 @@ Applied fixes to the systems’ file/directory permission & ownership as per the
 # Add Sticky Bit to world-writable directories
 find / -xdev -type d -perm -0002 ! -perm -1000 -exec chmod +t {} +
 #
-# For files with an invalid owning user or group, change the owning user & group to root
-find / -xdev \( -nouser -o -nogroup \) -exec chmod 640 {} + -exec chown root:root {} +
+# For files with an invalid owning user or group, change the owning user & group to UID 0 (root)
+find / -xdev \( -nouser -o -nogroup \) -exec chmod 640 {} + -exec chown 0:0 {} +
 #
 # Remove broken symlinks
 find / -xdev -xtype l -exec rm -v {} +
@@ -262,9 +262,7 @@ chmod +t /tmp /var/tmp /dev/shm
 #
 # Fix permissions for files regarding identity management
 chown root:root /etc/passwd /etc/group /etc/sudoers
-if
-	grep -q '^shadow:' /etc/group
-then
+if grep -q '^shadow:' /etc/group; then
 	chown root:shadow /etc/shadow /etc/gshadow
 	chmod 640 /etc/shadow /etc/gshadow
 else
@@ -274,12 +272,12 @@ fi
 chmod 644 /etc/passwd /etc/group
 #
 # Ensure only root can read the bootloader config
-find /boot -type f -exec chown root:root {} + -exec chmod 640 {} +
-find /boot -type d -exec chown root:root {} + -exec chmod 750 {} +
+find /boot -type f -exec chown 0:0 {} + -exec chmod 640 {} +
+find /boot -type d -exec chown 0:0 {} + -exec chmod 750 {} +
 #
 # Ensure SystemD unit files are secure
-find /etc/systemd/system -type f -exec chown root:root {} + -exec chmod 640 {} +
-find /etc/systemd/system -type d -exec chown root:root {} + -exec chmod 750 {} +
+find /etc/systemd/system -type f -exec chown 0:0 {} + -exec chmod 640 {} +
+find /etc/systemd/system -type d -exec chown 0:0 {} + -exec chmod 750 {} +
 #
 # Secure cron tabs & directories
 chown root:root /etc/cron* /etc/at.allow
