@@ -1,18 +1,18 @@
-[submodule "linsec-docs"]
+[submodule "docs/projects/linsec"]
 	path = docs/projects/linsec
 	url = https://github.com/JustAundre/linsec.wiki.git
-[submodule "bullsh-docs"]
+[submodule "docs/projects/bullsh"]
 	path = docs/projects/bullsh
 	url = https://github.com/JustAundre/bullsh.wiki.git
-[submodule "rng-passwd-docs"]
+[submodule "docs/projects/rng-passwd"]
 	path = docs/projects/rng-passwd
 	url = https://github.com/JustAundre/rng-passwd.wiki.git
-[submodule "www-docs"]
+[submodule "docs/projects/www"]
 	path = docs/projects/www
 	url = https://github.com/JustAundre/www.wiki.git
-[submodule "firewall-transcriber-docs"]
+[submodule "docs/projects/firewall-transcriber"]
 	path = docs/projects/firewall-transcriber
 	url = https://github.com/JustAundre/firewall-transcriber.wiki.git
-[submodule "bash-lib-docs"]
+[submodule "docs/projects/bash-lib"]
 	path = docs/projects/bash-lib
 	url = https://github.com/JustAundre/bash-lib.wiki.git
