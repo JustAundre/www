@@ -1,0 +1,24 @@
+name: sync-docs
+permissions:
+  contents: write
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - run: git submodule update --remote --depth 1
+      - run: |
+          git config user.name "sync-bot"
+          git config user.email "sync-bot@users.noreply.github.com"
+          for dir in ./docs/projects/*; do
+          	find "${dir}" -not -path '*/.*' -printf '%P\n' | sort >"${dir}/index.txt"
+          done
+          git add docs
+          git diff --cached --quiet || git commit -m "docs: bump wiki submodules"
+          git push
