@@ -26,7 +26,7 @@ Upgrade packages
 
 Upgrade snaps & flatpaks (where applicable)
 
-Remove unpermitted/uneccessary software as directed by your scenario/documentation
+Remove unpermitted/unecessary software as directed by your scenario/documentation
 
 Ensure there are no unfamiliar/unnecessary scripts being ran via:
 
@@ -48,9 +48,9 @@ Disable `IP forwarding` if it's not needed
 
 Ensure `root` user is locked with no password.
 
-Ensure users have only the neccessary permissions
+Ensure users have only the necessary permissions
 
-Ensure users have only the neccessary groups
+Ensure users have only the necessary groups
 
 No UID 0 users aside from `root`.
 

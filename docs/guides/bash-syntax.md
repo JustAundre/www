@@ -49,7 +49,7 @@ echo --BashEchoHasNoLongformOpt "Hi!"
 
 You also don’t ***have*** to quote regular arguments, but you should get used to it because they’re there for handling variables safely to prevent [command injection](https://owasp.org/www-community/attacks/Command_Injection).
 
-Also, check this out--you can combine shortform opts:
+Also, check this out—you can combine shortform opts:
 
 ```bash
 read -rp "A clean combination of -r and -p for the read command!"
@@ -90,7 +90,7 @@ test_var="abc"
 echo "${test_var}" # Result: "abc"
 ```
 
-There's also fun stuff you can do with string concacenation that you can also do in a few other places where strings are involved--including [command arguments](#structuring-a-command):
+There's also fun stuff you can do with string concacenation that you can also do in a few other places where strings are involved—including [command arguments](#structuring-a-command):
 
 ```bash
 foo='Hello! '

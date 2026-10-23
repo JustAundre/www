@@ -57,7 +57,7 @@
 
 `[a-z1-3]` - Yeah, you can do multiple ranges in 1 square bracket group.
 
-`(` and `)` - Notates the start and end of a capturing group--good for isolating tokens and readability, especially when using the OR conditioner.
+`(` and `)` - Notates the start and end of a capturing group—good for isolating tokens and readability, especially when using the OR conditioner.
 
 - Example: `(^[abc]|[xyz]$)` matches any string which starts with a, b or c... OR matches any string ending in x, y or z. 
 
