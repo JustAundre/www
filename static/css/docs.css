@@ -4,13 +4,6 @@
 	inherits: true;
 }
 
-[data-theme='light'],
-[data-theme='light'] .divergent-accent {
-	--bg-1: oklch(.975 .03125 var(--accent-hue));
-	--bg-2: oklch(.925 .05 var(--accent-hue));
-	--bg-3: oklch(.8 .0625 var(--accent-hue));
-}
-
 @font-face {
 	font-style: normal;
 	font-weight: normal;
@@ -48,16 +41,112 @@
 	--border-default: #3d444d;
 }
 
+@keyframes loading-wheel {
+	0% {
+		rotate: 0deg;
+	}
+	8.33% {
+		rotate: 30deg;
+	}
+	16.66% {
+		rotate: 60deg;
+	}
+	25% {
+		rotate: 90deg;
+	}
+	33.33% {
+		rotate: 120deg;
+	}
+	41.66% {
+		rotate: 150deg;
+	}
+	50% {
+		rotate: 180deg;
+	}
+	58.33% {
+		rotate: 210deg;
+	}
+	66.66% {
+		rotate: 240deg;
+	}
+	75% {
+		rotate: 270deg;
+	}
+	83.33% {
+		rotate: 300deg;
+	}
+	91.66% {
+		rotate: 330deg;
+	}
+	100% {
+		rotate: 360deg;
+	}
+}
+
+@keyframes blog-appear {
+	0% {
+		translate: 0 50vh;
+		rotate: 10deg;
+		opacity: 0;
+	}
+	100% {
+		translate: 0 0px;
+		rotate: 0deg;
+		opacity: 1;
+	}
+}
+
+.loading-svg {
+	width: 128px;
+	aspect-ratio: 1/1;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	margin-left: auto;
+	margin-right: auto;
+	animation: loading-wheel 1s infinite step-end;
+}
+
+.rerender {
+	all: unset;
+}
+
 html {
 	background: var(--bg-1);
+	overflow-x: hidden;
+}
+
+.button-row {
+	button {
+		background-color: var(--bg-2);
+	}
 }
 
 body {
+	display: flex;
+	flex-direction: column;
 	margin: auto;
 	padding: 1em;
 	max-width: 650px;
+	min-height: 100dvh;
 	color: var(--text-1);
 	font-family: var(--font-stack-docs), var(--font-stack-base);
+	opacity: 0;
+	animation: blog-appear 1s ease-out forwards;
+	animation-delay: 1.5s;
+	&.load {
+		animation-delay: 0s;
+	}
+}
+
+main {
+	flex: 1;
+	&:not(.active) {
+		display: none;
+	}
+}
+
+footer {
+	margin-top: 2em;
 }
 
 h1 {
@@ -228,6 +317,29 @@ tt {
 code br,
 tt br {
 	display: none;
+}
+
+input[type="checkbox"] {
+	appearance: none;
+	-webkit-appearance: none;
+	width: 1em;
+	height: 1em;
+	border-radius: .25em;
+	outline: none;
+	display: inline-grid;
+	place-content: center;
+	transition: all 0.2s ease;
+	background-color: var(--bg-2);
+	border: var(--bg-3) 2px solid;
+	translate: 0px 2px;
+	&:not([disabled]) {
+		cursor: pointer;
+	}
+	&:checked::after {
+		font-family: lucide;
+		content: "\e06c";
+		color: var(--text-2);
+	}
 }
 
 pre {
