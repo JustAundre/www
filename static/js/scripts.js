@@ -41,7 +41,6 @@ configMenu.innerHTML = `
 		</div>
 	</label>
 	<button type="submit" id="enter-site" onclick="commitConfig()">Continue</button>
-	<div><img src="/static/media/heart.gif"/></div
 </form>
 `;
 
@@ -49,8 +48,10 @@ function openConfig() {
 	if (!configMenu.isConnected) {
 		document.body.prepend(configMenu);
 	}
+	//
+	// CSS fails to register changes made to the open attribute by showModal(), so I have to explicitly update it.
 	configMenu.showModal();
-	configMenu.setAttribute('open', ''); // So, for some reason .showModal() does not make CSS register that the `open` property is now present, so...
+	configMenu.setAttribute('open', '');
 }
 
 function commitConfig() {
