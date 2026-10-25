@@ -16,3 +16,6 @@
 [submodule "docs/projects/bash-lib"]
 	path = docs/projects/bash-lib
 	url = https://github.com/JustAundre/bash-lib.wiki.git
+[submodule "docs/projects/about-me"]
+	path = docs/projects/about-me
+	url = https://github.com/JustAundre/JustAundre.git
