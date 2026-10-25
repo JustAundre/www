@@ -10,7 +10,8 @@ const toc = document.querySelector('#index-tab')
 const tocToggleButton = document.querySelector('[aria-label="Toggle Table of Contents"]')
 var query = new URLSearchParams(window.location.search).get('q') || new URLSearchParams(window.location.search).get('query') || 'status/400.md';
 var url = `${window.location.origin}/docs/${query}`;
-var tocUrl = `${window.location.origin}/docs/${query.split('/').slice(0, 2).join('/')}/Table of Contents.md`
+var queryParts = query.split("/");
+var tocUrl = queryParts[0] === "projects" ? `${window.location.origin}/docs/toc/${queryParts[1]}.md` : null;
 
 // Debug function
 async function delay(ms) {
@@ -59,7 +60,7 @@ tocToggleButton.addEventListener('click', () => {
 		blog.innerHTML = marked.parse(content);
 		Prism.highlightAll();
 
-		if (tocUrl == await statusChk(tocUrl)) {
+		if (tocUrl && tocUrl == await statusChk(tocUrl)) {
 			response = await fetch(tocUrl);
 			content = await response.text();
 		} else {

@@ -9,7 +9,6 @@ mktoc() {
 	# Process markdown files in the current directory
 	while read -rd '' path; do
 		basename="${path##*/}"
-		[[ ${basename} = "${output_file##*/}" ]] && continue
 		basename="${basename%.md}"
 		space=''
 		for ((i=0; i<indent; i++)); do
@@ -34,9 +33,10 @@ mktoc() {
 #
 # Start generation
 cd 'docs' || exit 1
+mkdir -p toc
 for wiki in 'projects/'*; do
 	[[ -d ${wiki} ]] || continue
-	output_file="${wiki}/Table of Contents.md"
+	output_file="toc/${wiki##*/}.md"
 	{
 		printf '# Table of Contents\n\n'
 		mktoc "${wiki}" 0
