@@ -45,9 +45,6 @@ tocToggleButton.addEventListener('click', () => {
 		blog.classList.add('active');
 		toc.classList.remove('active');
 	}
-	document.body.classList.remove('load');
-	rerender(document.body)
-	document.body.classList.add('load');
 });
 
 (async function() {
@@ -84,15 +81,13 @@ tocToggleButton.addEventListener('click', () => {
 		  });
 		});
 
-		document.body.classList.remove('load');
-		rerender(document.body)
-		document.body.classList.add('load');
 		if (window.location.hash) {
 			const targetHeading = document.getElementById(window.location.hash.substring(1));
 			if (targetHeading) {
 				targetHeading.scrollIntoView();
 			}
 		}
+		blog.classList.add('active')
 	} catch (error) {
 		console.error(error);
 	}
