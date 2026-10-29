@@ -124,28 +124,6 @@ main {
 		}
 	}
 
-	&::before,
-	&::after {
-		position: sticky;
-		isolation: isolate;
-		width: 100%;
-		height: var(--fade-width);
-		content: '';
-	}
-
-	&::before {
-		top: calc(var(--fade-width) * -2);
-		left: 0;
-		margin-bottom: calc(var(--fade-width) * -1);
-		background: linear-gradient(to bottom, var(--bg-2), transparent);
-	}
-
-	&::after {
-		bottom: calc(var(--fade-width) * -2);
-		left: 0;
-		background: linear-gradient(to top, var(--bg-2), transparent);
-	}
-
 	@media (orientation: portrait) {
 		width: 80dvw;
 	}
