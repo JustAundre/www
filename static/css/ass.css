@@ -32,12 +32,6 @@ body {
 	background: var(--bg-1);
 	width: 100%;
 	height: 100svh;
-
-	@media (orientation: portrait),
-	(max-height: 512px),
-	(max-width: 512px) {
-		grid-template-rows: var(--header-height) calc(512px - var(--header-height) - var(--footer-height)) var(--footer-height);
-	}
 }
 
 article,
@@ -89,8 +83,7 @@ main {
 }
 
 #projects-grid {
-	--fade-width: 0em;
-	--actual-padding: 0em;
+	--padding: 3em;
 	display: flex;
 	position: relative;
 	flex-shrink: 0;
@@ -99,11 +92,11 @@ main {
 	justify-content: safe center;
 	gap: 1em;
 	isolation: isolate;
-	padding-right: calc(var(--fade-width) + var(--actual-padding));
-	padding-left: calc(var(--fade-width) + var(--actual-padding));
+	padding-right: var(--padding);
+	padding-left: var(--padding);
 	width: calc(100% - 2em * 2 - 32ch);
 	height: 100%;
-	overflow: auto;
+	overflow-y: auto;
 	list-style-type: none;
 
 	>.project-card {
@@ -153,11 +146,7 @@ main {
 		background: linear-gradient(to top, var(--bg-2), transparent);
 	}
 
-	@media (orientation: portrait),
-	(max-height: 512px),
-	(max-width: 512px) {
-		padding-right: unset;
-		padding-left: unset;
+	@media (orientation: portrait) {
 		width: 80dvw;
 	}
 }
