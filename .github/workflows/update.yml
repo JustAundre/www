@@ -16,7 +16,7 @@ jobs:
           git config user.name 'sync-bot'
           git config user.email 'sync-bot@users.noreply.github.com'
 
-          git submodule update --remote
+          git submodule update --remote --recursive
           git add docs
           git diff --cached --quiet || git commit -m 'update(): bump wiki submodules.'
 
