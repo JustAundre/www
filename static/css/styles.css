@@ -45,9 +45,7 @@ html {
 	--font-stack-base: Ubuntu, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 	--font-stack-mono: "Cascadia Mono", ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
 	--font-stack-dyslexic: 'OpenDyslexic', 'Comic Sans MS', 'Comic Sans', 'Open Sans', 'Helvetica Neue', sans-serif;
-
 	font-family: var(--font-stack-base);
-
 	&[data-motion="true"] {
 		transition: --accent-hue 2500ms ease-out;
 		scroll-behavior: smooth;
@@ -58,30 +56,25 @@ html {
 	--switch-width: 4em;
 	--padding: 4px;
 	--knob-size: calc((var(--switch-width) / 2) - (var(--padding) * 2));
-
 	display: inline-block;
 	position: relative;
 	aspect-ratio: 2 / 1;
 	width: var(--switch-width);
-
 	input {
 		position: absolute;
 		opacity: 0;
 		width: 0;
 		height: 0;
 	}
-
 	.slider {
 		position: absolute;
 		cursor: pointer;
 		inset: 0;
 		border-radius: 9e9px;
 		background-color: oklch(20% 0 300);
-
 		[data-motion='true'] & {
 			transition: background-color .2s ease;
 		}
-
 		&::before {
 			position: absolute;
 			top: var(--padding);
@@ -93,20 +86,16 @@ html {
 			height: var(--knob-size);
 			content: "";
 		}
-
 		[data-motion='true'] &::before {
 			transition: transform 200ms cubic-bezier(.4, 0, .2, 1);
 		}
 	}
-
 	input:checked+.slider {
 		background-color: hsl(var(--accent-hue), 60%, 30%);
-
 		&::before {
 			transform: translateX(calc(var(--switch-width) - var(--knob-size) - (var(--padding) * 2)));
 		}
 	}
-
 	.state-text {
 		position: absolute;
 		top: 50%;
@@ -115,15 +104,12 @@ html {
 		pointer-events: none;
 		font-family: sans-serif;
 		user-select: none;
-
 		&:first-of-type {
 			left: .5em;
 		}
-
 		&:last-of-type {
 			right: .5em;
 		}
-
 		&::before,
 		&::after {
 			color: white;
@@ -143,24 +129,19 @@ html {
 	box-sizing: border-box;
 	border: unset;
 	z-index: 1;
-
 	* {
 		color: inherit;
 	}
-
 	&::backdrop {
 		backdrop-filter: brightness(.1) blur(4px);
 	}
-
 	h1 {
 		text-align: center;
 	}
-
 	.subtext {
 		margin-top: 10px;
 		max-width: calc(100% - 4em);
 	}
-
 	form {
 		position: relative;
 		display: grid;
@@ -169,7 +150,6 @@ html {
 		max-width: 25em;
 		height: fit-content;
 		max-height: 100%;
-
 		.option {
 			display: grid;
 			grid-template-columns: 2em 1fr 4em;
@@ -178,7 +158,6 @@ html {
 			height: fit-content;
 		}
 	}
-
 	#enter-site {
 		display: flex;
 		justify-content: safe center;
@@ -244,27 +223,24 @@ dialog[open], dialog[open]::backdrop {
 		border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
 		box-shadow: -2px -2px 8px color-mix(var(--accent) 20%, transparent);
 		margin: 0 .4em;
-		[data-motion="true"] & {
-			i {
-				transition: 50ms;
-			}
-			&[disabled] i {
-				font-size: .8em;
-				opacity: .5;
-			}
-			&:not([disabled]):hover i,
-			&:not([disabled]):focus-visible i {
-				cursor: pointer;
-			}
-			&:not([disabled]):active i {
-				font-size: .9em;
-				opacity: .7;
-			}
+		[data-motion="true"] & i {
+			transition: 50ms;
+		}
+		&[disabled] i {
+			font-size: .8em;
+			opacity: .5;
+		}
+		&:not([disabled]):hover i,
+		&:not([disabled]):focus-visible i {
+			cursor: pointer;
+		}&:not([disabled]):active i {
+			font-size: .9em;
+			opacity: .7;
 		}
 	}
 }
 
-html[data-dyslexic='true'] body,
+[data-dyslexic='true'] body,
 .font-stack-dyslexic {
 	font-family: var(--font-stack-dyslexic) !important;
 }
@@ -281,7 +257,7 @@ a {
 		font-style: normal;
 		font-weight: normal;
 		display: inline-block;
-		margin-left: .5ex;
+		margin-left: .5ch;
 		vertical-align: middle;
 	}
 	&:has(button) {
