@@ -1,6 +1,7 @@
-const root = document.documentElement;
+const root =
+	document.documentElement,
+	configMenu = document.createElement('dialog');
 let toggleTheme, toggleMotion, toggleDyslexic;
-configMenu = document.createElement('dialog');
 configMenu.setAttribute('id', 'config-menu');
 configMenu.setAttribute('data-theme', 'dark');
 configMenu.innerHTML = `

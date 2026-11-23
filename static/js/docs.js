@@ -13,17 +13,6 @@ var url = `${window.location.origin}/docs/${query}`;
 var queryParts = query.split("/");
 var tocUrl = queryParts[0] === "projects" ? `${window.location.origin}/docs/toc/${queryParts[1]}.md` : null;
 
-// Debug function
-async function delay(ms) {
-	new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function rerender(element) {
-	element.classList.add('rerender')
-	void element.offsetWidth
-	element.classList.remove('rerender')
-}
-
 async function statusChk(url) {
 	let check = await fetch(url, { method: 'HEAD' });
 	if (!check.ok) {
@@ -68,17 +57,17 @@ tocToggleButton.addEventListener('click', () => {
 		}
 		toc.innerHTML = marked.parse(content);
 		toc.querySelectorAll('[href^="#"]').forEach(link => {
-	  	link.addEventListener('click', (e) => {
-	    	e.preventDefault();
-		    const targetId = link.getAttribute('href').substring(1);
-		    const targetElement = document.getElementById(targetId);
-				if (!targetElement) return;
-				tocToggleButton.click();
-		    requestAnimationFrame(() => {
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				const targetId = link.getAttribute('href').substring(1);
+				const targetElement = document.getElementById(targetId);
+					if (!targetElement) return;
+					tocToggleButton.click();
+				requestAnimationFrame(() => {
 					targetElement.scrollIntoView();
 					history.pushState(null, '', `#${targetId}`)
-		    });
-		  });
+				});
+			});
 		});
 
 		if (window.location.hash) {
