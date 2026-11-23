@@ -65,23 +65,26 @@ main {
 	flex-direction: column;
 	position: relative;
 	flex-shrink: 0;
-	width: 32ch;
+	width: 36ch;
 	height: 100%;
-	gap: 1ex;
 	overflow: auto;
 	@media (orientation: portrait),
 	(max-width: 512px) {
 		width: 80dvw;
 	}
 	>button {
+		margin-top: 1ch;
 		text-align: start;
-		width: fit-content;
-		min-width: 8ex;
-		max-width: 100%;
+		width: 100%;
 		padding: 0;
-		border: none;
-		border-bottom: 1px solid var(--accent);
 		background-color: transparent;
+		border-image:
+			linear-gradient(
+				to right,
+				color-mix(var(--accent) 30%,
+				transparent),
+				transparent 40%
+			) 0 0 1 0;
 		&::before {
 			position: absolute;
 			content: '\e269';
@@ -89,16 +92,27 @@ main {
 			color: var(--accent);
 			transform: translateX(-4ex);
 			opacity: 0;
+			pointer-events: none;
+		}
+		[data-motion="true"] &::before {
 			transition:
 				250ms ease-out transform,
 				150ms ease-out opacity,
 				25ms linear scale;
-			pointer-events: none;
+		}
+		&:hover,
+		&:focus-visible {
+			border-image: linear-gradient(to right, color-mix(var(--accent) 75%, transparent), transparent 55%) 0 0 1 0;
 		}
 		&:hover::before,
 		&:focus-visible::before {
 			transform: translateX(-3ex);
 			opacity: .5;
+			cursor: pointer;
+		}
+		&:active,
+		&[data-active] {
+			border-image: linear-gradient(to right, var(--accent), transparent 70%) 0 0 1 0;
 		}
 		&:active::before,
 		&[data-active]::before {
@@ -183,33 +197,31 @@ main {
 }
 
 header {
-	display: flex;
-	position: static;
-	align-items: center;
-	box-sizing: border-box;
 	border-bottom: var(--accent) 1px solid;
 	padding: .5em;
-	width: 100%;
-	height: 100%;
 	background: linear-gradient(
 			var(--bg-1) 0%,
 			var(--bg-3)
 		);
-	[data-motion="true"] & {
-		animation: pulse 1500ms infinite ease-out;
-	}
 }
 
 footer {
-	position: static;
-	box-sizing: border-box;
 	border-top: var(--accent) 1px solid;
+}
+
+header,
+footer {
+	display: flex;
+	position: static;
+	align-items: center;
+	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
-
+	/* Decided this effect was a bit too distracting
 	[data-motion="true"] & {
 		animation: pulse 1500ms infinite ease-out;
 	}
+	*/
 }
 
 @keyframes background-slide {
