@@ -137,7 +137,8 @@ main.active, main.active ~ footer {
 }
 
 @starting-style {
-  main.active, main.active ~ footer {
+  main.active,
+  main.active ~ footer {
 	opacity: 0;
 	translate: 0 128px;
   }
