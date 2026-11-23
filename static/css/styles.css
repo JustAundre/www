@@ -235,8 +235,6 @@ dialog[open], dialog[open]::backdrop {
 		background-color: var(--bg-1);
 		border: none;
 		border-top: var(--accent) 1px solid;
-		border-radius: 0;
-		border-inline-width: 0;
 		isolation: isolate;
 		aspect-ratio: 1/1;
 		height: 2em;
