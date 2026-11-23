@@ -61,24 +61,53 @@ main {
 }
 
 #sidebar {
+	display: flex;
+	flex-direction: column;
 	position: relative;
 	flex-shrink: 0;
-
-	@media (min-height: 512px) {
-		border-radius: 1em;
-	}
-
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
 	width: 32ch;
 	min-width: 350px;
 	height: 100%;
+	gap: 1ex;
 	overflow: auto;
-
 	@media (orientation: portrait),
-	(max-height: 512px),
 	(max-width: 512px) {
 		width: 80dvw;
+	}
+	>button {
+		text-align: start;
+		width: fit-content;
+		min-width: 8ex;
+		max-width: 100%;
+		padding: 0;
+		border: none;
+		border-bottom: 1px solid var(--accent);
+		background-color: transparent;
+		&::before {
+			position: absolute;
+			content: '\e269';
+			font-family: lucide;
+			color: var(--accent);
+			transform: translateX(-4ex);
+			opacity: 0;
+			transition:
+				250ms ease-out transform,
+				150ms ease-out opacity,
+				25ms linear scale;
+			pointer-events: none;
+		}
+		&:hover::before,
+		&:focus-visible::before {
+			transform: translateX(-3ex);
+			opacity: .5;
+		}
+		&:active::before,
+		&[data-active]::before {
+			content: '\e2cc';
+			transform: translateX(-3ex);
+			opacity: 1;
+			scale: 1.1;
+		}
 	}
 }
 
@@ -122,8 +151,8 @@ main {
 			box-shadow: 0 0 50px rgba(0, 0, 0, .5);
 		}
 	}
-
-	@media (orientation: portrait) {
+	@media (orientation: portrait),
+	(max-width: 512px) {
 		width: 80dvw;
 	}
 }
