@@ -6,12 +6,12 @@ marked.use(window.markedGfmHeadingId.gfmHeadingId());
 marked.use(window.markedAlert.default ? window.markedAlert.default() : window.markedAlert());
 
 const blog = document.querySelector('#blog-tab');
-const toc = document.querySelector('#index-tab')
-const tocToggleButton = document.querySelector('[aria-label="Toggle Table of Contents"]')
+const index = document.querySelector('#index-tab')
+const indexToggleButton = document.querySelector('[aria-label="Toggle Table of Contents"]')
 var query = new URLSearchParams(window.location.search).get('q') || new URLSearchParams(window.location.search).get('query') || 'status/400.md';
 var url = `${window.location.origin}/docs/${query}`;
 var queryParts = query.split("/");
-var tocUrl = queryParts[0] === "projects" ? `${window.location.origin}/docs/toc/${queryParts[1]}.md` : null;
+var indexUrl = queryParts[0] === "projects" ? `${window.location.origin}/docs/indexes/${queryParts[1]}.md` : null;
 
 async function statusChk(url) {
 	let check = await fetch(url, { method: 'HEAD' });
@@ -26,13 +26,13 @@ async function statusChk(url) {
 	return url
 }
 
-tocToggleButton.addEventListener('click', () => {
+indexToggleButton.addEventListener('click', () => {
 	if (blog.classList.contains('active')) {
 		blog.classList.remove('active');
-		toc.classList.add('active');
+		index.classList.add('active');
 	} else {
 		blog.classList.add('active');
-		toc.classList.remove('active');
+		index.classList.remove('active');
 	}
 });
 
@@ -46,8 +46,8 @@ tocToggleButton.addEventListener('click', () => {
 		blog.innerHTML = marked.parse(content);
 		Prism.highlightAll();
 
-		if (tocUrl && tocUrl == await statusChk(tocUrl)) {
-			response = await fetch(tocUrl);
+		if (indexUrl && indexUrl == await statusChk(indexUrl)) {
+			response = await fetch(indexUrl);
 			content = await response.text();
 		} else {
 			content='# Table of Contents\n\n'
@@ -55,14 +55,14 @@ tocToggleButton.addEventListener('click', () => {
 				content += `${'  '.repeat(element.tagName.charAt(1))} - [${element.textContent}](#${element.id})\n`
 			}
 		}
-		toc.innerHTML = marked.parse(content);
-		toc.querySelectorAll('[href^="#"]').forEach(link => {
+		index.innerHTML = marked.parse(content);
+		index.querySelectorAll('[href^="#"]').forEach(link => {
 			link.addEventListener('click', (e) => {
 				e.preventDefault();
 				const targetId = link.getAttribute('href').substring(1);
 				const targetElement = document.getElementById(targetId);
 					if (!targetElement) return;
-					tocToggleButton.click();
+					indexToggleButton.click();
 				requestAnimationFrame(() => {
 					targetElement.scrollIntoView();
 					history.pushState(null, '', `#${targetId}`)

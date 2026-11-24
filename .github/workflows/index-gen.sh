@@ -24,18 +24,19 @@ mkindex() {
 			space+=$'  '
 		done
 		echo "${space}- ${basename}"
-		mktoc "${path}" "$((indent + 1))"
+		mkindex "${path}" "$((indent + 1))"
 	done < <(find "${dir}" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -print0)
 }
 #
 # Start generation
-cd 'docs' || exit 1
-mkdir -p indexes
-for wiki in 'projects/'*; do
-	[[ -d ${wiki} ]] || continue
-	output_file="toc/${wiki##*/}.md"
+source='docs/projects'
+output_dir='docs/indexes'
+mkdir -p "${output_dir}"
+while IFS='' read -rd '' project; do
+	[[ -d ${project} ]] || continue
+	output_file="${output_dir}/${project##*/}.md"
 	{
 		printf '# Wikipedia Index\n\n'
-		mktoc "${wiki}" 0
+		mkindex "${project}" 0
 	} >"${output_file}"
-done
+done < <(find "${source}" -mindepth 1 -maxdepth 1 -type d -print0)
