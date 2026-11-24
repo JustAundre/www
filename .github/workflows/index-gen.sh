@@ -1,4 +1,7 @@
 #!/bin/bash
+source="${1}"
+output_dir="${2}"
+indenter="${3}"
 mkindex() {
 	# mktoc - (M)a(k)e (T)able (o)f (C)ontents
 	local dir="${1:-.}" indent="${2:-0}" space='' path='' basename='' i=0
@@ -9,7 +12,7 @@ mkindex() {
 		basename="${basename%.md}"
 		space=''
 		for ((i=0; i<indent; i++)); do
-			space+=$'\t'
+			space+="${indenter}"
 		done
 		path="${path#./}"
 		path="${path#*_}"
@@ -21,7 +24,7 @@ mkindex() {
 		basename="${path##*/}"
 		space=''
 		for ((i=0; i<indent; i++)); do
-			space+=$'  '
+			space+="${indenter}"
 		done
 		echo "${space}- ${basename}"
 		mkindex "${path}" "$((indent + 1))"
@@ -29,8 +32,6 @@ mkindex() {
 }
 #
 # Start generation
-source='docs/projects'
-output_dir='docs/indexes'
 mkdir -p "${output_dir}"
 while IFS='' read -rd '' project; do
 	[[ -d ${project} ]] || continue

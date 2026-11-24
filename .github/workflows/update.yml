@@ -22,7 +22,7 @@ jobs:
 
           rm -rf docs/indexes
           mkdir -p docs/indexes
-          ./.github/workflows/index-gen.sh
+          ./.github/workflows/index-gen.sh docs/projects docs/indexes '  '
           git add docs/indexes
           git diff --cached --quiet || git commit -m 'update(): regenerate table of contents.'
           git push
