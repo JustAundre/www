@@ -24,7 +24,7 @@ mktoc() {
 		basename="${path##*/}"
 		space=''
 		for ((i=0; i<indent; i++)); do
-			space+=$'\t'
+			space+=$'  '
 		done
 		echo "${space}- ${basename}"
 		mktoc "${path}" "$((indent + 1))"
