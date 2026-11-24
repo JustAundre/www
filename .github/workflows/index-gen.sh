@@ -16,6 +16,7 @@ mkindex() {
 		done
 		path="${path#./}"
 		path="${path#*_}"
+		path="${path#*/}"
 		echo "${space}- [${basename}](\"/docs?q=${path}\")"
 	done < <(find "${dir}" -mindepth 1 -maxdepth 1 -type f -name '*.md' -print0)
 	#

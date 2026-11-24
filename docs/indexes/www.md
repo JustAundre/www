@@ -1,3 +1,3 @@
 # Wikipedia Index
 
-- [Home]("/docs?q=docs/projects/www/Home.md")
+- [Home]("/docs?q=projects/www/Home.md")
