@@ -1,8 +1,5 @@
 #!/bin/bash
-
-
-
-mktoc() {
+mkindex() {
 	# mktoc - (M)a(k)e (T)able (o)f (C)ontents
 	local dir="${1:-.}" indent="${2:-0}" space='' path='' basename='' i=0
 	#
@@ -33,12 +30,12 @@ mktoc() {
 #
 # Start generation
 cd 'docs' || exit 1
-mkdir -p toc
+mkdir -p indexes
 for wiki in 'projects/'*; do
 	[[ -d ${wiki} ]] || continue
 	output_file="toc/${wiki##*/}.md"
 	{
-		printf '# Table of Contents\n\n'
+		printf '# Wikipedia Index\n\n'
 		mktoc "${wiki}" 0
 	} >"${output_file}"
 done

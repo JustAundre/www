@@ -20,7 +20,9 @@ jobs:
           git add docs
           git diff --cached --quiet || git commit -m 'update(): bump wiki submodules.'
 
-          ./.github/workflows/mktoc.sh
-          git add docs
+          rm -rf docs/indexes
+          mkdir -p docs/indexes
+          ./.github/workflows/index-gen.sh
+          git add docs/indexes
           git diff --cached --quiet || git commit -m 'update(): regenerate table of contents.'
           git push
