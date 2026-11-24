@@ -17,9 +17,9 @@ async function statusChk(url) {
 	let check = await fetch(url, { method: 'HEAD' });
 	if (!check.ok) {
 		if (check.status == 400) {
-			return 'status/400.md'
+			return 'docs/status/400.md'
 		} else if (check.status == 404) {
-			return 'status/404.md'
+			return 'docs/status/404.md'
 		}
 		return `${window.location.origin}/docs/${query}`;
 	}
