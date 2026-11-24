@@ -125,11 +125,6 @@ main, footer {
 	translate: 0 128px;
 }
 
-footer {
-	margin-top: auto;
-	padding-top: 8em;
-}
-
 main.active, main.active ~ footer {
 	transition:
 		opacity 1s ease,
@@ -149,7 +144,8 @@ main.active, main.active ~ footer {
 }
 
 footer {
-	margin-top: 2em;
+	margin-top: auto;
+	padding-top: 8em;
 }
 
 h1 {
