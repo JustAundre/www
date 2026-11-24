@@ -7,7 +7,7 @@ marked.use(window.markedAlert.default ? window.markedAlert.default() : window.ma
 
 const blog = document.querySelector('#blog-tab');
 const index = document.querySelector('#index-tab')
-const indexToggleButton = document.querySelector('[aria-label="Toggle Table of Contents"]')
+const indexToggleButton = document.querySelector('[aria-label="Toggle Index"]')
 var query = new URLSearchParams(window.location.search).get('q') || new URLSearchParams(window.location.search).get('query') || 'status/400.md';
 var url = `${window.location.origin}/docs/${query}`;
 var queryParts = query.split("/");
@@ -38,14 +38,14 @@ indexToggleButton.addEventListener('click', () => {
 
 (async function() {
 	try {
-		let response, content, indent;
-
+		let
+			response,
+			content;
 		url = await statusChk(url);
 		response = await fetch(url);
 		content = await response.text();
 		blog.innerHTML = marked.parse(content);
 		Prism.highlightAll();
-
 		if (indexUrl && indexUrl == await statusChk(indexUrl)) {
 			response = await fetch(indexUrl);
 			content = await response.text();
@@ -69,7 +69,6 @@ indexToggleButton.addEventListener('click', () => {
 				});
 			});
 		});
-
 		if (window.location.hash) {
 			const targetHeading = document.getElementById(window.location.hash.substring(1));
 			if (targetHeading) {
