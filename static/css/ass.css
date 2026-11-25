@@ -20,8 +20,8 @@ a:focus-visible {
 }
 
 html {
-	width: 100%;
-	min-height: 100%;
+	width: 100vw;
+	height: 100vh;
 }
 
 body {
@@ -31,7 +31,7 @@ body {
 	margin: unset;
 	background: var(--bg-1);
 	width: 100%;
-	height: 100svh;
+	height: 100%;
 }
 
 article,
@@ -50,11 +50,6 @@ main {
 	max-height: 100%;
 	overflow: auto;
 	scroll-snap-type: y mandatory;
-
-	@media (min-height: 512px) {
-		padding: 2em;
-	}
-
 	>* {
 		scroll-snap-align: start;
 	}
@@ -65,12 +60,16 @@ main {
 	flex-direction: column;
 	position: relative;
 	flex-shrink: 0;
-	width: 24em;
+	width: 30%;
 	height: 100%;
 	overflow: auto;
 	@media (orientation: portrait),
-	(max-width: 512px) {
-		width: 80dvw;
+	(max-width: 48em) {
+		width: 90vw;
+	}
+	@media (max-width: 16em) {
+		width: 100vw;
+		padding: 1em .5em;
 	}
 	>.sidebar-tab {
 		margin-top: .5em;
@@ -126,7 +125,6 @@ main {
 }
 
 #cards-grid {
-	--shadow-spread: 48px;
 	display: flex;
 	position: relative;
 	flex-shrink: 0;
@@ -135,55 +133,32 @@ main {
 	justify-content: safe center;
 	gap: 1em;
 	isolation: isolate;
-	padding: var(--shadow-spread) 0;
-	width: calc(100% - 2em * 2 - 32ch);
+	width: 70%;
 	height: 100%;
 	overflow-y: auto;
 	list-style-type: none;
 
 	>.project-card {
-		margin-right: auto;
-		margin-left: auto;
+		margin: auto;
 		border: var(--accent) 1px solid;
 		border-radius: 8px;
 		background: var(--bg-1);
 		padding: 1em;
-		width: 36em;
+		width: 24em;
 		height: fit-content;
-		box-shadow: 0 0 var(--shadow-spread) rgba(0, 0, 0, .25);
-		margin: auto;
-
-		h2 {
-			margin: unset;
-			width: fit-content;
-		}
-
 		[data-motion="true"] & {
 			transition: box-shadow 100ms linear;
 		}
-
-		&:hover {
-			box-shadow: 0 0 50px rgba(0, 0, 0, .5);
-		}
 	}
 	@media (orientation: portrait),
-	(max-width: 512px) {
-		width: 80dvw;
+	(max-width: 48em) {
+		width: 90vw;
+		padding: 1em;
 	}
-}
-
-/* Animation for MY card */
-@keyframes rainbow {
-	0% {
-		--accent-hue: 0;
+	@media (max-width: 16em) {
+		width: 100vw;
+		padding: 1em 0;
 	}
-	100% {
-		--accent-hue: 360;
-	}
-}
-
-[data-motion="true"] #my-card {
-	animation: rainbow 25s infinite linear;
 }
 
 @keyframes pulse {
