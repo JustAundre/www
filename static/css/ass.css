@@ -65,7 +65,7 @@ main {
 	flex-direction: column;
 	position: relative;
 	flex-shrink: 0;
-	width: 36ch;
+	width: 24em;
 	height: 100%;
 	overflow: auto;
 	@media (orientation: portrait),
@@ -73,7 +73,7 @@ main {
 		width: 80dvw;
 	}
 	>.sidebar-tab {
-		margin-top: 1ch;
+		margin-top: .5em;
 		text-align: start;
 		width: 100%;
 		padding: 0;
@@ -148,7 +148,7 @@ main {
 		border-radius: 8px;
 		background: var(--bg-1);
 		padding: 1em;
-		width: 42ch;
+		width: 36em;
 		height: fit-content;
 		box-shadow: 0 0 var(--shadow-spread) rgba(0, 0, 0, .25);
 		margin: auto;

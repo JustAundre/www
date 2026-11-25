@@ -258,7 +258,7 @@ a {
 		font-style: normal;
 		font-weight: normal;
 		display: inline-block;
-		margin-left: .5ch;
+		margin-left: .5em;
 		vertical-align: middle;
 	}
 	&:has(button) {
