@@ -143,9 +143,7 @@ Services being monitored:
 Services covered under this section:
 
 - WWW/Front-end
-
 - DB/MySQL Database
-
 - WMS/Back-end
 
 Installed custom SystemD hardening override files to the service’s respective overrides folder
@@ -153,11 +151,8 @@ Installed custom SystemD hardening override files to the service’s respective 
 The referenced directory can be found at `/etc/systemd/system/(SERVICE NAME).service.d/`, & in that referenced directory, the referenced custom override file is named `override.conf` - The referenced `override.conf` file contains restrictions to reduce the blast radius of compromised services
 
 Examples of this are found below:
-
   - `ProtectSystem` (ensures core parts of the system are mounted as read-only for the service)
-
   - `ProtectHome` (ensures user home directories are not to be read or tampered with) - `NoNewPrivieges` (ensures the service may not re-escalate to previously blocked permissions)
-
   - Too many to list here. Reference the example override for a generic front-end service below.
 
 ```shell
@@ -525,8 +520,8 @@ To comply with the requirement that “...Warehouse Workers must have access to 
 
 ### DNS Configuration
 
-| Host-name | FQDN                   | Internal IP |
-| --------- | ---------------------- | ----------- |
+| Host-name | FQDN              | Internal IP |
+| --------- | ----------------- | ----------- |
 | `AD`      | `ad.example.com`  | `10.8.0.10` |
 | `WWW`     | `www.example.com` | `10.8.0.20` |
 | `WMS`     | `wms.example.com` | `10.8.0.30` |

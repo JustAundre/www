@@ -207,7 +207,8 @@ dialog[open], dialog[open]::backdrop {
 	flex-direction: row;
 	border-radius: 9e9px;
 	width: fit-content;
-	button, a {
+	>button,
+	>a {
 		display: flex;
 		justify-content: safe center;
 		align-items: center;
