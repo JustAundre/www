@@ -39,7 +39,7 @@ ul,
 aside {
 	box-sizing: border-box;
 	margin: unset;
-	padding: 2em;
+	padding: unset;
 	width: 100%;
 	height: 100%;
 }
@@ -56,6 +56,8 @@ main {
 }
 
 #sidebar {
+	--parent-padding: 4em;
+	--tab-width: 8em;
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -63,18 +65,19 @@ main {
 	width: 30%;
 	height: 100%;
 	overflow: auto;
+	padding: var(--parent-padding);
 	@media (orientation: portrait),
-	(max-width: 48em) {
+	(max-width: 56em) {
 		width: 90vw;
 	}
-	@media (max-width: 16em) {
+	@media (max-width: 32em) {
 		width: 100vw;
-		padding: 1em .5em;
+		--parent-padding: .5em;
 	}
 	>.sidebar-tab {
 		margin-top: .5em;
 		text-align: start;
-		width: 100%;
+		width: var(--tab-width);
 		padding: 0;
 		background-color: transparent;
 		border: none;
@@ -85,16 +88,28 @@ main {
 			transparent),
 			transparent 40%
 		) 0 0 1 0;
-		&::before {
+		&::before,
+		&::after {
 			position: absolute;
 			content: '\e269';
 			font-family: lucide;
 			color: var(--accent);
-			transform: translateX(-4ex);
 			opacity: 0;
 			pointer-events: none;
 		}
-		[data-motion="true"] &::before {
+		&::before {
+			transform: translateX(-4ex);
+		}
+		&::after {
+			left: calc(var(--parent-padding) + var(--tab-width));
+			transform: translateX(4ex);
+			filter: opacity(0);
+			@media (max-width: 32em) {
+				filter: unset;
+			}
+		}
+		[data-motion="true"] &::before,
+		[data-motion="true"] &::after {
 			transition:
 				250ms ease-out transform,
 				150ms ease-out opacity,
@@ -102,22 +117,36 @@ main {
 		}
 		&:hover,
 		&:focus-visible {
-			border-image: linear-gradient(to right, color-mix(var(--accent) 75%, transparent), transparent 55%) 0 0 1 0;
+			border-image: linear-gradient(
+				to right,
+				color-mix(var(--accent) 75%,
+				transparent),
+				transparent 55%
+			) 0 0 1 0;
 		}
 		&:hover::before,
-		&:focus-visible::before {
-			transform: translateX(-3ex);
+		&:focus-visible::before,
+		&:hover::after,
+		&:focus-visible::after {
 			opacity: .5;
 			cursor: pointer;
+		}&:hover::before,
+		&:focus-visible::before {
+			transform: translateX(-3ex);
+		}
+		&:hover::after,
+		&:focus-visible::after {
+			transform: translateX(3ex);
 		}
 		&:active,
 		&[data-active] {
 			border-image: linear-gradient(to right, var(--accent), transparent 70%) 0 0 1 0;
 		}
 		&:active::before,
-		&[data-active]::before {
+		&[data-active]::before,
+		&:active::after,
+		&[data-active]::after {
 			content: '\e2cc';
-			transform: translateX(-3ex);
 			opacity: 1;
 			scale: 1.1;
 		}
@@ -138,30 +167,36 @@ main {
 	overflow-y: auto;
 	list-style-type: none;
 	scroll-snap-type: y mandatory;
+	padding: 4em 0;
 	>* {
 		scroll-snap-align: center;
 	}
 
 	>.project-card {
 		margin: auto;
-		border: var(--accent) 1px solid;
-		border-radius: 8px;
 		background: var(--bg-1);
 		padding: 1em;
 		width: 24em;
 		height: fit-content;
+		border-style: solid;
+		border-image: linear-gradient(
+			to bottom,
+			var(--accent) 0%,
+			transparent 100%
+		) 1 / 2 1 0 1;
+		border-bottom: none;
 		[data-motion="true"] & {
 			transition: box-shadow 100ms linear;
 		}
 	}
 	@media (orientation: portrait),
-	(max-width: 48em) {
+	(max-width: 56em) {
 		width: 90vw;
 		padding: 1em;
 	}
-	@media (max-width: 16em) {
+	@media (max-width: 32em) {
 		width: 100vw;
-		padding: 1em 0;
+		padding: 0;
 	}
 }
 
