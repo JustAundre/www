@@ -148,6 +148,9 @@ main {
 		&[data-active]::after {
 			content: '\e2cc';
 			opacity: 1;
+		}
+		&:active::before,
+		&:active::after {
 			scale: 1.1;
 		}
 	}
@@ -204,18 +207,6 @@ main {
 	}
 }
 
-@keyframes pulse {
-	0% {
-		outline: color-mix(var(--accent) 25%, transparent) 1px solid;
-		outline-offset: 0;
-	}
-
-	100% {
-		outline: transparent 0 solid;
-		outline-offset: 32px;
-	}
-}
-
 header {
 	border-bottom: var(--accent) 1px solid;
 	padding: .5em;
@@ -237,11 +228,6 @@ footer {
 	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
-	/* Decided this effect was a bit too distracting
-	[data-motion="true"] & {
-		animation: pulse 1500ms infinite ease-out;
-	}
-	*/
 }
 
 @keyframes background-slide {
