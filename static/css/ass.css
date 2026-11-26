@@ -174,7 +174,11 @@ main {
 
 	>.project-card {
 		margin: auto;
-		background: var(--bg-1);
+		background: linear-gradient(
+			to bottom,
+			var(--bg-3) 0%,
+			var(--bg-1) 100%
+		);
 		padding: 1em;
 		width: 24em;
 		height: fit-content;
