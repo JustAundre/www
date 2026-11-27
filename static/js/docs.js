@@ -53,7 +53,7 @@ indexToggleButton.addEventListener('click', () => {
 		} else {
 			content='# Table of Contents\n\n'
 			for (element of blog.querySelectorAll('h1, h2, h3, h4, h5, h6')) {
-				content += `${'  '.repeat(element.tagName.charAt(1))} - [${element.textContent}](#${element.id})\n`
+				content+=`${'  '.repeat(element.tagName.charAt(1))} - [${element.textContent}](#${element.id})\n`
 			}
 		}
 		index.innerHTML = marked.parse(content);
