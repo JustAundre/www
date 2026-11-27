@@ -6,7 +6,8 @@ declare -r template="$(<templates/projects.html)"
 declare -A metadata
 while IFS=$'\n' read -r -d '~' 'metadata[title]' 'metadata[degree]' 'metadata[owner]' 'metadata[repo]'; do
 	# Fetch external metadata
-	response="$(curl -L -H 'Accept: application/vnd.github+json' "https://api.github.com/repos/${metadata[owner]}/${metadata[repo]}")"
+	echo "i: confirmed reception of project ${metadata['title']@Q}."
+	response="$(curl -s -L -H 'Accept: application/vnd.github+json' "https://api.github.com/repos/${metadata[owner]}/${metadata[repo]}")"
 	#
 	# Parse JSON for desired metadata
 	merged_description="$(jq -r '.description' <<<"${response}")"
@@ -35,4 +36,5 @@ while IFS=$'\n' read -r -d '~' 'metadata[title]' 'metadata[degree]' 'metadata[ow
 	#
 	# Export to file
 	echo "${tmp}" >"projects/${metadata['repo']}.html"
+	echo "i: reached end of card (re)generation for project ${metadata['title']@Q}."
 done <metadata/projects.txt
