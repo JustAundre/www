@@ -1,0 +1,38 @@
+name: Minify and Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  minify-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install css-html-js-minify
+        run: |
+          pip install css-html-js-minify
+
+      - name: Minify Assets In-Place
+        run: |
+          css-html-js-minify --overwrite --multiple ./
+
+      - name: Commit and Push to 'min' Branch
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: min
+          create_branch: true
+          commit_message: "refactor(): auto-minified assets via css-html-js-minify"
+          file_pattern: "*.html *.css *.js **/*.html **/*.css **/*.js"
+          push_options: '--force'
