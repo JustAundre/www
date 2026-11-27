@@ -47,7 +47,7 @@ indexToggleButton.addEventListener('click', () => {
 		response = await fetch(url);
 		content = await response.text();
 		blog.innerHTML = marked.parse(content);
-		Prism.highlightAll();
+		hljs.highlightAll();
 		if (indexUrl && indexUrl == await statusChk(indexUrl)) {
 			response = await fetch(indexUrl);
 			content = await response.text();
