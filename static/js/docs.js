@@ -5,12 +5,11 @@ marked.setOptions({
 marked.use(window.markedGfmHeadingId.gfmHeadingId());
 marked.use(window.markedAlert.default ? window.markedAlert.default() : window.markedAlert());
 
-const
-	blog = document.querySelector('#blog-tab'),
+const blog = document.querySelector('#blog-tab'),
 	index = document.querySelector('#index-tab'),
 	indexToggleButton = document.querySelector('[aria-label="Toggle Index"]');
-var
-	query = new URLSearchParams(window.location.search).get('q') || new URLSearchParams(window.location.search).get('query') || 'status/400.md',
+
+var query = new URLSearchParams(window.location.search).get('q') || new URLSearchParams(window.location.search).get('query') || 'status/400.md',
 	url = `${window.location.origin}/docs/${query}`,
 	queryParts = query.split("/"),
 	indexUrl = queryParts[0] === "projects" ? `${window.location.origin}/docs/indexes/${queryParts[1]}.md` : null;

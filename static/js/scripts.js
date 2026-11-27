@@ -1,7 +1,8 @@
-const root =
-	document.documentElement,
+const root = document.documentElement,
 	configMenu = document.createElement('dialog');
-let toggleTheme, toggleMotion, toggleDyslexic;
+let toggleTheme,
+	toggleMotion,
+	toggleDyslexic;
 configMenu.setAttribute('id', 'config-menu');
 configMenu.setAttribute('data-theme', 'dark');
 configMenu.innerHTML = `
@@ -56,15 +57,14 @@ function openConfig() {
 }
 
 function commitConfig() {
-	const theme = toggleTheme.checked ? 'light' : 'dark';
-	const motion = toggleMotion.checked ? 'true' : 'false';
-	const dyslexic = toggleDyslexic.checked ? 'true' : 'false';
+	const theme = toggleTheme.checked ? 'light' : 'dark',
+		motion = toggleMotion.checked ? 'true' : 'false',
+		dyslexic = toggleDyslexic.checked ? 'true' : 'false',
+		config = { theme, motion, dyslexic };
 
 	root.setAttribute('data-theme', theme);
 	root.setAttribute('data-motion', motion);
 	document.body.setAttribute('data-dyslexic', dyslexic);
-
-	const config = { theme, motion, dyslexic };
 	localStorage.setItem('userConfig', JSON.stringify(config));
 }
 
