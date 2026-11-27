@@ -1,0 +1,43 @@
+name: Minify and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  minify-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Minification Packages
+        run: |
+          npm install -g html-minifier-terser clean-css-cli terser
+
+      - name: Minify Files
+        run: |
+          # Minify HTML files
+          find . -type f -name "*.html" ! -path "./.git/*" -exec html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o {} {} \;
+
+          # Minify CSS files
+          find . -type f -name "*.css" ! -path "./.git/*" -exec cleancss -o {} {} \;
+
+          # Minify JS files
+          find . -type f -name "*.js" ! -path "./.git/*" -exec terser {} --compress --mangle -o {} \;
+
+      - name: Commit and Push to 'min' Branch
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: min
+          create_branch: true
+          commit_message: "refactor(): auto-minified assets via GitHub Actions for deployment."
+          file_pattern: "*.html *.css *.js"
