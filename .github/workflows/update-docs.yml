@@ -1,0 +1,39 @@
+name: sync-docs
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Pull upstream changes to wiki(s)
+        run: |
+          git submodule update --remote --recursive
+
+      - name: Commit submodule updates
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "update(): bump wiki submodules."
+          file_pattern: "*.md"
+
+      - name: Regenerate indexes
+        run: |
+          rm -rf docs/indexes
+          mkdir -p docs/indexes
+          ./.github/workflows/index-gen.sh docs/projects docs/indexes '  '
+
+      - name: Commit index updates
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "update(): regenerate indexes."
+          file_pattern: "*.md"
