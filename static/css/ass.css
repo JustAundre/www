@@ -10,15 +10,6 @@
 	--footer-height: 1px;
 }
 
-* {
-	color: var(--text-1);
-}
-
-a:hover,
-a:focus-visible {
-	color: var(--accent);
-}
-
 html {
 	width: 100vw;
 	height: 100vh;
@@ -32,6 +23,7 @@ body {
 	background: var(--bg-1);
 	width: 100%;
 	height: 100%;
+	color: var(--text-1);
 }
 
 article,
@@ -174,7 +166,6 @@ main {
 	>* {
 		scroll-snap-align: center;
 	}
-
 	>.project-card {
 		margin: auto;
 		background: linear-gradient(
@@ -207,19 +198,6 @@ main {
 	}
 }
 
-header {
-	border-bottom: var(--accent) 1px solid;
-	padding: .5em;
-	background: linear-gradient(
-			var(--bg-1) 0%,
-			var(--bg-3)
-		);
-}
-
-footer {
-	border-top: var(--accent) 1px solid;
-}
-
 header,
 footer {
 	display: flex;
@@ -228,6 +206,17 @@ footer {
 	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
+}
+header {
+	border-bottom: var(--accent) 1px solid;
+	padding: .5em;
+	background: linear-gradient(
+		var(--bg-1) 0%,
+		var(--bg-3)
+	);
+}
+footer {
+	border-top: var(--accent) 1px solid;
 }
 
 @keyframes background-slide {
