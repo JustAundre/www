@@ -37,3 +37,13 @@ jobs:
         with:
           commit_message: "update(): regenerate indexes."
           file_pattern: "*.md"
+
+      - name: Regenerate cards
+        run: |
+          ./.github/workflows/card-gen.sh
+
+      - name: Commit index updates
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "update(): regenerate cards."
+          file_pattern: "*.html"
