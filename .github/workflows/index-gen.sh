@@ -7,7 +7,7 @@ mkindex() {
 	local dir="${1:-.}" indent="${2:-0}" space='' path='' basename='' i=0
 	#
 	# Process markdown files in the current directory
-	while read -rd '' path; do
+	while IFS='' read -rd '' path; do
 		basename="${path##*/}"
 		basename="${basename%.md}"
 		space=''
@@ -21,7 +21,7 @@ mkindex() {
 	done < <(find "${dir}" -mindepth 1 -maxdepth 1 -type f -name '*.md' -print0)
 	#
 	# Process subdirectories
-	while read -rd '' path; do
+	while IFS='' read -rd '' path; do
 		basename="${path##*/}"
 		space=''
 		for ((i=0; i<indent; i++)); do
