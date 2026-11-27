@@ -40,5 +40,6 @@ jobs:
         with:
           branch: min
           create_branch: true
+          push_options: '--force'
           commit_message: "refactor(): auto-minified assets via GitHub Actions for deployment."
           file_pattern: "*.html *.css *.js"
