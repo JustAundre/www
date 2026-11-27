@@ -8,3 +8,6 @@ for (const project of document.querySelectorAll('.project-card')) {
 		root.setAttribute('style', '');
 	});
 }
+for (const project of document.querySelectorAll('#tab-list > .sidebar-tab')) {
+	// Stub
+}
