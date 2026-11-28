@@ -28,3 +28,6 @@ for (const activeTab of tabs) {
 		})();
 	});
 }
+//
+// Activate the Projects sidebar tab on load
+document.querySelector('[data-directory="projects"]').click()
