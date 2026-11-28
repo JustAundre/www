@@ -6,7 +6,7 @@ Last updated on November 27, 2026
 
 > [!IMPORTANT]
 >
-> This guide depends on your understanding of general concepts in UNIX systems. Though, hyperlinks/footnotes are present where likely needed.
+> This guide depends on your understanding of general concepts in UNIX systems. Hyperlinks & footnotes are added to attempt to supplement this.
 >
 > This covers the syntax for shell script, but much of a script's meaning comes from the commands. You'll need to learn the right commands for the job elsewhere.
 
