@@ -24,13 +24,13 @@
 > [!NOTE]
 >
 > Selectors with a **`!!!`** after them can be capitalized to invert their meaning;
-> i.e. `\S` matches any *non*-whitespace character. 
+> i.e. `\S` matches any *non*-whitespace character.
 
 `.` - That's a period, it matches all characters with the sole exception of a newline.
 
 `\s` - **`!!!`** A backslashed lowercase `s` which matches all *whitespace* characters.
 
-`\w` - **`!!!`** A backslashed lowercase `w` and is the equivalent of `[a-zA-Z0-9_]` which matches any character that is a standard English alphabetical character, a number, or underscore `_`. 
+`\w` - **`!!!`** A backslashed lowercase `w` and is the equivalent of `[a-zA-Z0-9_]` which matches any character that is a standard English alphabetical character, a number, or underscore `_`.
 
 `\d` - **`!!!`** A backslashed lowercase `d` and is the equivalent of `[0-9]` which matches any character which is a number.
 
@@ -42,7 +42,7 @@
 
 `[x1@]` - Match a character that is x, 1 or @.
 
-`[^x1@]` - Match any character that is NOT x 1 or @.
+`[^x1@]` - Match any character that is NOT x, 1 or @.
 
 `[a-z]` - Match any lowercase character a through z.
 
@@ -55,11 +55,10 @@
 
 `[0-9]` - Match any numerical character 0 through 9.
 
-`[a-z1-3]` - Yeah, you can do multiple ranges in 1 square bracket group.
+`[a-z1-3]` - You can do multiple ranges in a square bracket group.
 
 `(` and `)` - Notates the start and end of a capturing group—good for isolating tokens and readability, especially when using the OR conditioner.
-
-- Example: `(^[abc]|[xyz]$)` matches any string which starts with a, b or c... OR matches any string ending in x, y or z. 
+  - Example: `(^[abc]|[xyz]$)` matches any string which starts with a, b or c... OR matches any string ending in x, y or z.
 
 ## Quantifiers
 
