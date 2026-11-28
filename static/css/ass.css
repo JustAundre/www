@@ -166,17 +166,12 @@ main {
 	overflow-y: auto;
 	list-style-type: none;
 	scroll-snap-type: y mandatory;
+	padding: 2em 0;
 	>* {
 		scroll-snap-align: center;
 	}
 	>.project-card {
 		margin: auto;
-		&:first-of-type {
-			margin-top: 4em;
-		}
-		&:last-of-type {
-			margin-bottom: 4em;
-		}
 		background: linear-gradient(
 			to bottom,
 			var(--bg-3) 0%,

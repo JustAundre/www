@@ -57,7 +57,7 @@ a {
 		font-style: normal;
 		font-weight: normal;
 		display: inline-block;
-		margin-left: .5em;
+		margin-left: .25em;
 		vertical-align: middle;
 	}
 	&:hover,
