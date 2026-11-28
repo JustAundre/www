@@ -82,6 +82,7 @@ main {
 				transparent),
 				transparent 40%
 			) 0 0 1 0;
+			cursor: pointer;
 			&::before,
 			&::after {
 				position: absolute;
