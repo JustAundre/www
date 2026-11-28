@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 cd static/html/cards || exit 1
-rm -rf projects
-mkdir -p projects
+rm -- *.html
 declare -r template="$(<templates/projects.html)"
 declare -A metadata
 while IFS=$'\n' read -r -d '~' 'metadata[title]' 'metadata[degree]' 'metadata[owner]' 'metadata[repo]'; do
