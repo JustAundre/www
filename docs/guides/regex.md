@@ -1,5 +1,8 @@
 # Regex Crash Course
 
+Created on November 27, 2026
+Last updated on November 27, 2026
+
 ## Anchors
 
 `^` - Notates the absolute start of a line

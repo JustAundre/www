@@ -1,5 +1,8 @@
 # A Bash Syntax Guide
 
+Created on November 27, 2026
+Last updated on November 27, 2026
+
 > [!IMPORTANT]
 >
 > This guide depends on your understanding of general concepts in UNIX systems. Though, hyperlinks/footnotes are present where likely needed.
