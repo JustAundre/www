@@ -39,8 +39,7 @@ indexToggleButton.addEventListener('click', () => {
 
 (async function() {
 	try {
-		let
-			response,
+		let response,
 			content;
 		url = await statusChk(url);
 		response = await fetch(url);
