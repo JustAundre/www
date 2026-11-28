@@ -9,37 +9,38 @@
 	<script src="/static/js/scripts.js" defer=""></script>
 	<script src="/static/js/ass.js" defer=""></script>
 </head>
-<body>
 
-<header>
-	<nav class="button-row">
-		<button aria-label="Open Settings"><i class="icon-settings"></i></button>
-		<a href="#start" aria-label="Scroll to sidebar"><i class="icon-move-left"></i></a>
-		<a href="#end" aria-label="Scroll to project cards"><i class="icon-move-right"></i></a>
-	</nav>
-</header>
-<main>
-	<div id="start"></div>
-	<aside id="sidebar">
-		<h1>Aundre's Shell Script Suite</h1>
-		<span class="subtext">
-			Aundre is a psuedonym.<br>
-			I'll leave you to decide if the acronym was intentional.
-		</span>
-		<ul id="tab-list">
-			<li class="sidebar-tab" aria-labelledby="About Me">About Me</li>
-			<li class="sidebar-tab" aria-labelledby="Extra-curriculars">Extra-curriculars</li>
-			<li class="sidebar-tab" aria-labelledby="Certifications">Certifications</li>
-			<li class="sidebar-tab" aria-labelledby="Projects">Projects</li>
-			<li class="sidebar-tab" aria-labelledby="Blogs & Guides">Blogs & Guides</li>
+<body>
+	<header>
+		<nav class="button-row">
+			<button aria-label="Open Settings"><i class="icon-settings"></i></button>
+			<a href="#start" aria-label="Scroll to sidebar"><i class="icon-move-left"></i></a>
+			<a href="#end" aria-label="Scroll to project cards"><i class="icon-move-right"></i></a>
+		</nav>
+	</header>
+	<main>
+		<div id="start"></div>
+		<aside id="sidebar">
+			<h1>Aundre's Shell Script Suite</h1>
+			<span class="subtext">
+				Aundre is a psuedonym.<br>
+				I'll leave you to decide if the acronym was intentional.
+			</span>
+			<ul id="tab-list">
+				<li class="sidebar-tab" data-directory="about-me">About Me</li>
+				<li class="sidebar-tab" data-directory="extra-curriculars">Extra-curriculars</li>
+				<li class="sidebar-tab" data-directory="certifications">Certifications</li>
+				<li class="sidebar-tab" data-directory="projects">Projects</li>
+				<li class="sidebar-tab" data-directory="blogs-and-guides">Blogs & Guides</li>
+			</ul>
+		</aside>
+		<ul id="cards-grid">
 		</ul>
-	</aside>
-	<ul id="cards-grid">
-	</ul>
-	<div id="end"></div>
-	<div id="background"></div>
-</main>
-<footer id="root-footer">
-</footer>
+		<div id="end"></div>
+		<div id="background"></div>
+	</main>
+	<footer id="root-footer">
+	</footer>
 </body>
+
 </html>
