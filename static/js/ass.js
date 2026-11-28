@@ -8,6 +8,18 @@ for (const project of document.querySelectorAll('.project-card')) {
 		root.setAttribute('style', '');
 	});
 }
-for (const project of document.querySelectorAll('#tab-list > .sidebar-tab')) {
-	// Stub
+const tabs = document.querySelectorAll('#tab-list > .sidebar-tab'),
+	cardsGrid = document.querySelector('#cards-grid');
+for (const activeTab of tabs) {
+	activeTab.addEventListener('click', () => {
+		for (const tab of tabs) {
+			tab.removeAttribute('data-active');
+		}
+		activeTab.setAttribute('data-active', '');
+		(async function() {
+			const response = await fetch(`/static/html/cards/${activeTab.getAttribute('data-directory')}.html`),
+				html = await response.text();
+			cardsGrid.innerHTML = html
+		})();
+	});
 }
