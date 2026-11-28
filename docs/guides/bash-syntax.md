@@ -1,5 +1,6 @@
 # A Bash Syntax Guide
 
+Learn the simple, advanced and the weird about the versatile scripting language for server administration and personal automation.
 Created on November 27, 2026
 Last updated on November 27, 2026
 
@@ -11,20 +12,25 @@ Last updated on November 27, 2026
 
 ## Help You Help Yourself
 
-The `man` command (short for "manual") is great for a comprehensive breakdown of some command, but demonstrations and examples are better for getting started with a complex command—you'll want the `tldr` command, which you can install using your preferred package manager:
+The `man`ual command is great for a comprehensive breakdown of some given command,
+but you'll want the `tldr` command for easily digestible examples,
+installable via the proper command below:
 
 ```bash
 # For Debian and its derivatives:
 sudo apt install tldr
 
-# For Redhat and its derivatives:
+# For modern RHEL:
 sudo dnf install tldr
+
+# For legacy RHEL:
+sudo yum install tldr
 
 # For Arch and its derivatives:
 sudo pacman -S tldr
 ```
 
-It generally follows the same formatting as the `man` command:
+It follows the same basic formatting as the `man`ual command:
 
 ```bash
 # See usage examples of basic calculator:
@@ -52,7 +58,7 @@ echo --BashEchoHasNoLongformOpt "Hi!"
 
 You also don’t ***have*** to quote regular arguments, but you should get used to it because they’re there for handling variables safely to prevent [command injection](https://owasp.org/www-community/attacks/Command_Injection).
 
-Also, check this out—you can combine shortform opts:
+Also, check this out—you can combine short-form options:
 
 ```bash
 read -rp "A clean combination of -r and -p for the read command!"
@@ -60,7 +66,7 @@ read -rp "A clean combination of -r and -p for the read command!"
 
 > [!NOTE]
 >
-> Opts may or may not take an argument after them, it all depends on what the program wants, though usually the commands’ respective `man` page will tell you what each opt expects.
+> Options may or may not take an argument after them, it all depends on what the program wants, though usually the commands’ respective `man` page will tell you what each opt expects.
 
 ## The Shebang
 
@@ -225,8 +231,7 @@ if # Newline delimiter
 command-a # No, indentation won't affect interpretation.
 then # Another newline delimiter
 	# "Actually nevermind I wanna indent here"
-	# "Too many newlines, let's use semi-colons instead."
-	command-b; elif command-c; then command-d;
+	command-b; elif command-c; then command-d; # "Too many newlines, let's use semi-colons instead."
 fi
 ```
 
