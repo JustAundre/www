@@ -168,7 +168,7 @@ main {
 	scroll-snap-type: y mandatory;
 	padding: 2em 0;
 	>* {
-		scroll-snap-align: center;
+		scroll-snap-align: start;
 	}
 	>.project-card {
 		margin: auto;
