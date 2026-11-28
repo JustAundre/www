@@ -35,6 +35,6 @@ while IFS=$'\n' read -r -d '~' 'metadata[title]' 'metadata[degree]' 'metadata[ow
 	tmp="${tmp/'SUBTEXT'/"${metadata['subtext']}"}"
 	#
 	# Export to file
-	echo "${tmp}" >"projects.html"
+	echo "${tmp}" >>"projects.html"
 	echo "i: reached end of card (re)generation for project ${metadata['title']@Q}."
 done <metadata/projects.txt
